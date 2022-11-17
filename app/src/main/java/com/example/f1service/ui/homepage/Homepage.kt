@@ -45,6 +45,16 @@ class Homepage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        mBinding.bottomNavigationView.setContent {
+            F1ServiceTheme {
+                Surface(modifier = Modifier.fillMaxSize(),
+                color = Color.Blue) {
+
+                }
+            }
+        }
+
         viewModel.nextRaceInfo.observe(viewLifecycleOwner) {
             mBinding.nextRaceContainer.setContent {
                 F1ServiceTheme {
@@ -65,11 +75,12 @@ class Homepage : Fragment() {
     }
 
     private fun initContainer() {
-        val frgManager = requireActivity().supportFragmentManager.beginTransaction()
+        val action = R.id.action_home_to_lastRace
+        /*val frgManager = requireActivity().supportFragmentManager.beginTransaction()
         frgManager.replace(
             R.id.container,
             LastRace()
         )
-        frgManager.commit()
+        frgManager.commit()*/
     }
 }
