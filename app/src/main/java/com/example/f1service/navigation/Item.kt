@@ -1,4 +1,4 @@
-package com.example.f1service.ui.homepage.navigation
+package com.example.f1service.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

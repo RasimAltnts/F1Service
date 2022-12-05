@@ -1,4 +1,4 @@
-package com.example.f1service.ui.homepage
+package com.example.f1service.ui.nextRace
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -12,42 +12,41 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.BlurredEdgeTreatment
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.res.ResourcesCompat
-import com.example.f1service.R
+import androidx.lifecycle.LifecycleOwner
 import com.example.f1service.counter.DCounter
 import com.example.f1service.counter.INextRaceCounter
 import com.example.f1service.counter.NextRaceCounter
 import com.example.f1service.extension.time
-import com.example.f1service.model.F1NextRace.FirstPractice
-import com.example.f1service.model.F1NextRace.Qualifying
-import com.example.f1service.model.F1NextRace.SecondPractice
 import com.example.f1service.model.model.DNextRaceModel
-import com.example.f1service.ui.theme.F1ServiceTheme
 import com.example.f1service.ui.theme.LightColorPalette
+import com.example.f1servicecompose.R
 import java.time.ZonedDateTime
 import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NextRaceUI(
-    value: DNextRaceModel,
-    counter: NextRaceCounter?
+    counter: NextRaceCounter?,
+    viewModels: NextRaceViewModel,
+    lifecycle: LifecycleOwner
 ) {
-    var day = remember{ mutableStateOf("0") }
-    var hours = remember{ mutableStateOf("0") }
-    var minutes = remember{ mutableStateOf("0") }
-    var seconds = remember{ mutableStateOf("0") }
+    val day = remember{ mutableStateOf("0") }
+    val hours = remember{ mutableStateOf("0") }
+    val minutes = remember{ mutableStateOf("0") }
+    val seconds = remember{ mutableStateOf("0") }
+
+    val circuitName = remember { mutableStateOf("")}
+    val nextRaceCity = remember { mutableStateOf("") }
+    val nextRaceCountry = remember { mutableStateOf("") }
+    val nextRaceDate = remember { mutableStateOf("") }
+
 
     val iNextRaceCounter = object : INextRaceCounter {
         override fun counter(counter: DCounter) {
@@ -58,15 +57,25 @@ fun NextRaceUI(
         }
     }
 
-    counter?.let {
-        it.setListener(listener = iNextRaceCounter)
-        it.startTimer(encodeRaceTime(value))
+    viewModels.nextRaceInfo.observe(lifecycle) {
+        circuitName.value = it.nextRaceCircuitName.toString()
+        nextRaceCity.value = it.nextRaceCity.toString()
+        nextRaceCountry.value = it.nextRaceCountry.toString()
+        nextRaceDate.value = it.nextRaceDate.toString()
+
+        if (counter != null) {
+            counter.setListener(iNextRaceCounter)
+            encodeRaceTime(it)?.let { date ->
+                counter.startTimer(date)
+            }
+        }
     }
+
+    viewModels.sendRequest()
 
     Card(modifier = Modifier
         .fillMaxWidth()
         .fillMaxHeight()
-        .padding(10.dp)
         .background(Color.Transparent),
         elevation = CardDefaults.cardElevation(
             5.dp
@@ -112,7 +121,6 @@ fun NextRaceUI(
                     contentDescription = "null")
 
                 Spacer(modifier = Modifier.width(5.dp))
-
 
                 Text(modifier = Modifier
                     .wrapContentHeight(Alignment.Top)
@@ -160,12 +168,11 @@ fun NextRaceUI(
                         .padding(10.dp, 0.dp, 5.dp, 0.dp)
                         .background(Color.Transparent)) {
 
-                        Text(text = value.nextRaceCircuitName, maxLines = 1)
+                        Text(text = circuitName.value, maxLines = 1)
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text(text = "${value.nextRaceCity}, ${value.nextRaceCountry}", maxLines = 1)
+                        Text(text = "${nextRaceCity.value}, ${nextRaceCountry.value }", maxLines = 1)
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text(text = value.nextRaceDate)
-
+                        Text(text = nextRaceDate.value)
                     }
                 }
             }
@@ -210,34 +217,14 @@ private fun NextRaceTitle(title: String) {
     }
 }
 
-private fun encodeRaceTime(model:DNextRaceModel): Date {
-    return ZonedDateTime.now().time(model.nextRaceDate,model.nextRaceTime)
+fun encodeRaceTime(model:DNextRaceModel): Date? {
+    var date:Date ?= null
+    if(model.nextRaceDate != null && model.nextRaceTime != null) {
+        date = ZonedDateTime.now().time(model.nextRaceDate!!,model.nextRaceTime!!)
+    }
+    return date
 }
 
-@Preview
-@Composable
-fun prew() {
-    val testValue = DNextRaceModel(
-        "Brazilian",
-        "Brazilian",
-        "15.12.2022",
-        "15:00",
-        "Brazilian",
-        "Brazlian",
-        FirstPractice("asd","asd"),
-        SecondPractice("asd","asd"),
-        Qualifying("asd","asd"),
-        "asd",
-        "asd",
-        "asd",
-        "asd",
-        DCounter("0","0","0","0")
-    )
-    F1ServiceTheme() {
-        Surface() {
-            NextRaceUI(value = testValue , counter = null)
-        }
-    }
-}
+
 
 

@@ -1,4 +1,4 @@
-package com.example.f1service.model.model
+package com.example.f1service.model
 
 data class DF1LastRaceModel(
     var circuitName: String = "",

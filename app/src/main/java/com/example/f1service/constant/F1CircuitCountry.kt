@@ -21,4 +21,31 @@ class F1CircuitCountry {
     val mexico = "https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/mexico-flag.png.transform/2col/image.png"
     val brazil = "https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/brazil-flag.png.transform/2col/image.png"
     val abuDhabi = "https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/abu-dhabi-flag.png.transform/2col/image.png"
+
+    fun getLink(key:String):String? {
+        var url:String ?= null
+        when(key) {
+            "Bahrain" -> url = bahreyh
+            "Saudi Arabia" -> url = saudiArabia
+            "Australia" -> url = australia
+            "Italy" -> url = italy
+            "USA" -> url = unitedStates
+            "Spain" -> url = spain
+            "Monaco" -> url = monaco
+            "Azerbaijan" -> url = azerbaijan
+            "Canada" -> url = canada
+            "UK" -> url = greatBritain
+            "France" -> url = france
+            "Austria" -> url = austria
+            "Hungary" -> url = hungary
+            "Belgium" -> url = belgium
+            "Netherlands" -> url = netherlands
+            "Mexico" -> url = mexico
+            "Singapore" -> url = singapore
+            "Japan" -> url = japan
+            "Brazil" -> url = brazil
+            "UAE" -> url = abuDhabi
+        }
+        return url
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.f1service.mapper
 
-import com.example.f1service.model.model.DF1LastRaceModel
-import com.example.f1service.model.model.DLastRaceResult
+import com.example.f1service.model.DF1LastRaceModel
+import com.example.f1service.model.DLastRaceResult
 import com.example.f1service.model.model.F1LastRace.LastRaceResults
 import com.example.f1service.model.model.F1LastRace.Result
 import com.google.gson.Gson
@@ -13,7 +13,7 @@ class LastRaceMapper {
 
     fun encodeLastRaceResponse(jsonObject: JsonObject):DF1LastRaceModel {
 
-        var result = DF1LastRaceModel()
+        val result = DF1LastRaceModel()
         val mDF1LastRaceResults = gson.fromJson(jsonObject, LastRaceResults::class.java)
 
         result.circuitName = mDF1LastRaceResults.MRData.RaceTable.Races[0].Circuit.circuitName
@@ -24,7 +24,7 @@ class LastRaceMapper {
     }
 
     private fun encodeResults(result: List<Result>): ArrayList<DLastRaceResult> {
-        var results: ArrayList<DLastRaceResult> = ArrayList()
+        val results: ArrayList<DLastRaceResult> = ArrayList()
 
         val iterator = result.listIterator()
         while (iterator.hasNext()) {

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-    <style name="Theme.F1Service" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:colorPrimary">@color/white</item>
-        <item name="app_bg">@drawable/light_mode_bg</item>
-    </style>
+    <style name="Theme.F1ServiceCompose" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

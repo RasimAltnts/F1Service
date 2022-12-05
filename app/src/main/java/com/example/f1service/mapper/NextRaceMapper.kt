@@ -4,11 +4,6 @@ import com.example.f1service.model.model.DNextRaceModel
 import com.example.f1service.model.F1NextRace.NextRaceModels
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 class NextRaceMapper {
 

@@ -16,4 +16,5 @@ data class F1CurrentSession(
     var round:String,
     var session:String,
     var location: Location,
+    var country: String,
 )

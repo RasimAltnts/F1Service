@@ -1,5 +1,6 @@
-package com.example.f1service.ui.lastRace
+package com.example.f1service.ui.container.lastRaceResults
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -18,20 +19,39 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.example.f1service.model.model.DF1LastRaceModel
-import com.example.f1service.model.model.DLastRaceResult
+import com.example.f1service.model.DLastRaceResult
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.f1service.constant.F1Team
 import com.example.f1service.constant.F1Driver
 
 
+
+@SuppressLint("MutableCollectionMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LastRaceUI(
-    results:DF1LastRaceModel,
-    mF1Driver: F1Driver,
-    mF1Cons: F1Team
-) {
+fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
+
+    val mF1Driver = F1Driver()
+    val mF1Cons = F1Team()
+
+    val circuitId = remember { mutableStateOf("") }
+    val circuitName = remember { mutableStateOf("") }
+    val pilot= remember { mutableStateOf(ArrayList<DLastRaceResult> ()) }
+
+    val data by viewModel.resultList.observeAsState()
+    data?.let {
+        circuitId.value = it.circuitId
+        circuitName.value = it.circuitName
+        pilot.value = it.pilot!!
+    }
+
+
+    viewModel.sendRequest()
 
     Column(modifier = Modifier
         .fillMaxWidth()
@@ -41,19 +61,20 @@ fun LastRaceUI(
     horizontalAlignment = Alignment.CenterHorizontally)
     {
         Text(
-            text = results.circuitName,
+            text = circuitId.value,
             color = Color.White,
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
         )
-
         Text(
-            text = results.circuitId,
+            text = circuitName.value,
             color = Color.White,
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
         )
 
-        LazyColumn(contentPadding = PaddingValues(horizontal = 1.dp, vertical = 1.dp)) {
-            results.pilot?.let {
+        LazyColumn(
+            contentPadding = PaddingValues(0.dp,0.dp,0.dp,60.dp),
+        ) {
+            pilot.value.let {
                 items(
                     items = it,
                     itemContent = {
@@ -62,7 +83,6 @@ fun LastRaceUI(
                             mF1Cons = mF1Cons)
                     })
             }
-
         }
 
     }
@@ -122,7 +142,7 @@ fun Holder(
                 mF1Driver.getLink(item.pilotName)?.let {
                     DriverImageView(
                         it,
-                        mF1Cons.getLink(item.constructorId)!!
+                        mF1Cons.getLink(item.constructorId)
                     )
                 }
             }

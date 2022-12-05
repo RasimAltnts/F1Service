@@ -1,10 +1,10 @@
-package com.example.f1service.ui.homepage
+package com.example.f1service.ui.container.lastRaceResults
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.f1service.mapper.NextRaceMapper
-import com.example.f1service.model.model.DNextRaceModel
+import com.example.f1service.mapper.LastRaceMapper
+import com.example.f1service.model.DF1LastRaceModel
 import com.example.f1service.service.ApiService
 import com.example.f1service.service.IRequestCallback
 import com.example.f1service.service.RestService
@@ -14,24 +14,20 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomepageViewModel @Inject constructor(
-    val nextRaceMapper: NextRaceMapper,
-    val service: RestService,
-    val apiService: ApiService,
+class LastRaceViewModel @Inject constructor(
+    var service:RestService,
+    var mapper:LastRaceMapper,
+    var apiService: ApiService
 ) : ViewModel() {
 
-    private var mDNextRaceModel:DNextRaceModel ?= null
-
-    val nextRaceInfo:MutableLiveData<DNextRaceModel> by lazy {
-        MutableLiveData<DNextRaceModel> ()
+    val resultList: MutableLiveData<DF1LastRaceModel> by lazy {
+        MutableLiveData<DF1LastRaceModel> ()
     }
 
     private val response = object : IRequestCallback {
         override fun isSuccesfull(response: JsonObject?) {
             response?.let {
-                mDNextRaceModel =
-                    nextRaceMapper.decodeNextRaceResponse(it)
-                nextRaceInfo.value = mDNextRaceModel
+                resultList.value = mapper.encodeLastRaceResponse(it)
             }
         }
     }
@@ -40,7 +36,7 @@ class HomepageViewModel @Inject constructor(
         viewModelScope.launch {
             service.sendRequest(
                 response,
-                apiService.getNextRace()
+                apiService.getLastRaceResults()
             )
         }
     }

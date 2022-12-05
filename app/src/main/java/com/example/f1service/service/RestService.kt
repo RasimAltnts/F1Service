@@ -2,14 +2,9 @@ package com.example.f1service.service
 
 import androidx.annotation.NonNull
 import com.google.gson.JsonObject
-import dagger.Module
-import dagger.Provides
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 
 
 class RestService {
