@@ -3,6 +3,7 @@ package com.example.f1service.ui.container.raceList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.f1service.constant.F1CircuitCountry
 import com.example.f1service.mapper.LastRaceMapper
 import com.example.f1service.model.DF1CurrentSession
 import com.example.f1service.model.F1CurrentSession
@@ -21,7 +22,8 @@ import javax.inject.Inject
 class RaceCalendarViewModel @Inject constructor(
     var service: RestService,
     var mapper: LastRaceMapper,
-    var apiService: ApiService
+    var apiService: ApiService,
+    var f1Circ: F1CircuitCountry
 ) : ViewModel() {
 
     val calendar:MutableLiveData<DF1CurrentSession> by lazy {
@@ -76,5 +78,9 @@ class RaceCalendarViewModel @Inject constructor(
                 apiService.getRaceCalendar()
             )
         }
+    }
+
+    fun getF1CircuitCountry(): F1CircuitCountry {
+        return f1Circ
     }
 }

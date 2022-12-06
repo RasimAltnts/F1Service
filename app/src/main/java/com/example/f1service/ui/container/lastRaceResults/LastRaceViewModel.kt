@@ -3,8 +3,11 @@ package com.example.f1service.ui.container.lastRaceResults
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.f1service.constant.F1Driver
+import com.example.f1service.constant.F1Team
 import com.example.f1service.mapper.LastRaceMapper
 import com.example.f1service.model.DF1LastRaceModel
+import com.example.f1service.model.F1Const.F1Constructor
 import com.example.f1service.service.ApiService
 import com.example.f1service.service.IRequestCallback
 import com.example.f1service.service.RestService
@@ -17,7 +20,9 @@ import javax.inject.Inject
 class LastRaceViewModel @Inject constructor(
     var service:RestService,
     var mapper:LastRaceMapper,
-    var apiService: ApiService
+    var apiService: ApiService,
+    var f1driver: F1Driver,
+    var f1Const: F1Team
 ) : ViewModel() {
 
     val resultList: MutableLiveData<DF1LastRaceModel> by lazy {
@@ -39,5 +44,13 @@ class LastRaceViewModel @Inject constructor(
                 apiService.getLastRaceResults()
             )
         }
+    }
+
+    fun getF1Driver():F1Driver {
+        return f1driver
+    }
+
+    fun getF1Team(): F1Team {
+        return f1Const
     }
 }

@@ -36,9 +36,6 @@ import com.example.f1service.constant.F1Driver
 @Composable
 fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
 
-    val mF1Driver = F1Driver()
-    val mF1Cons = F1Team()
-
     val circuitId = remember { mutableStateOf("") }
     val circuitName = remember { mutableStateOf("") }
     val pilot= remember { mutableStateOf(ArrayList<DLastRaceResult> ()) }
@@ -79,8 +76,8 @@ fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
                     items = it,
                     itemContent = {
                         Holder(item = it,
-                            mF1Driver = mF1Driver,
-                            mF1Cons = mF1Cons)
+                            mF1Driver = viewModel.getF1Driver(),
+                            mF1Cons = viewModel.getF1Team())
                     })
             }
         }

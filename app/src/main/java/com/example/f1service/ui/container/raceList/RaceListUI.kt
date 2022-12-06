@@ -35,7 +35,6 @@ import com.example.f1service.model.F1CurrentSession
 @Composable
 fun RaceListUI(viewModel: RaceCalendarViewModel = hiltViewModel()) {
 
-    val mF1CircuitCountry = F1CircuitCountry()
 
     val circuitId = remember { mutableStateOf("") }
     val circuitName = remember { mutableStateOf("") }
@@ -77,7 +76,7 @@ fun RaceListUI(viewModel: RaceCalendarViewModel = hiltViewModel()) {
                 items(
                     items = it,
                     itemContent = {
-                        Holder(item = it, mF1CircuitCountry = mF1CircuitCountry)
+                        Holder(item = it, mF1CircuitCountry = viewModel.getF1CircuitCountry())
                     })
             }
         }

@@ -1,6 +1,6 @@
 package com.example.f1service.navigation
 
-import com.example.f1servicecompose.R
+import com.example.f1service.R
 
 sealed class BottomNavItem(var title:String,var icon:Int, var route:String) {
     object Home: BottomNavItem("Home", R.drawable.home,"Home")

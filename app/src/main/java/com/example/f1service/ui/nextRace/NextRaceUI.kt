@@ -26,7 +26,7 @@ import com.example.f1service.counter.NextRaceCounter
 import com.example.f1service.extension.time
 import com.example.f1service.model.model.DNextRaceModel
 import com.example.f1service.ui.theme.LightColorPalette
-import com.example.f1servicecompose.R
+import com.example.f1service.R
 import java.time.ZonedDateTime
 import java.util.*
 
