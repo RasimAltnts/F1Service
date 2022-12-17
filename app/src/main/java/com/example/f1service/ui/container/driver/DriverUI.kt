@@ -176,7 +176,7 @@ fun Holder(
             Text(modifier = Modifier
                 .wrapContentHeight()
                 .width(50.dp),
-                text = "+${item.points}",
+                text = "${item.points} P",
                 maxLines = 1,
                 color = Color.Black,
                 fontSize = 18.sp)
