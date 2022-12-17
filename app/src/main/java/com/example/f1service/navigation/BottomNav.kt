@@ -17,6 +17,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.f1service.ui.container.constructor.ConstructorUI
+import com.example.f1service.ui.container.driver.DriverUI
 import com.example.f1service.ui.container.lastRaceResults.LastRaceUI
 import com.example.f1service.ui.container.raceList.RaceListUI
 
@@ -66,12 +68,10 @@ fun NavigationGraph(navController: NavHostController) {
             LastRaceUI()
         }
         composable(BottomNavItem.Driver.route) {
-            //JobScreen2()
-            //NetworkScreen()
+            DriverUI()
         }
         composable(BottomNavItem.Constructor.route) {
-            //JobScreen2()
-            //AddPostScreen()
+            ConstructorUI()
         }
         composable(BottomNavItem.RaceList.route) {
             RaceListUI()

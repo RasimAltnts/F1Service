@@ -16,6 +16,8 @@ class LastRaceMapper {
         val result = DF1LastRaceModel()
         val mDF1LastRaceResults = gson.fromJson(jsonObject, LastRaceResults::class.java)
 
+        result.session = mDF1LastRaceResults.MRData.RaceTable.season
+        result.round = mDF1LastRaceResults.MRData.RaceTable.round
         result.circuitName = mDF1LastRaceResults.MRData.RaceTable.Races[0].Circuit.circuitName
         result.circuitId = mDF1LastRaceResults.MRData.RaceTable.Races[0].Circuit.circuitId
         result.pilot = encodeResults(mDF1LastRaceResults.MRData.RaceTable.Races[0].Results)

@@ -1,11 +1,12 @@
-package com.example.f1service.ui.container.raceList
+package com.example.f1service.ui.container.constructor
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.f1service.constant.F1CircuitCountry
-import com.example.f1service.mapper.RaceListMapper
-import com.example.f1service.model.DF1CurrentSession
+import com.example.f1service.constant.F1Team
+import com.example.f1service.mapper.ConstructorMapper
+import com.example.f1service.model.DF1ConstructorModel
+import com.example.f1service.model.F1ConstructorModel
 import com.example.f1service.service.ApiService
 import com.example.f1service.service.IRequestCallback
 import com.example.f1service.service.RestService
@@ -14,37 +15,38 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
-class RaceListViewModel @Inject constructor(
+class ConstructorViewModel @Inject constructor(
     var service: RestService,
     var apiService: ApiService,
-    var f1Circ: F1CircuitCountry,
-    var raceListMapper: RaceListMapper,
-) : ViewModel() {
+    var mapper: ConstructorMapper,
+    var f1Team: F1Team,
+):ViewModel() {
 
-    val calendar:MutableLiveData<DF1CurrentSession> by lazy {
-        MutableLiveData<DF1CurrentSession> ()
+    val results: MutableLiveData<DF1ConstructorModel> by lazy {
+        MutableLiveData<DF1ConstructorModel> ()
     }
 
-    private var raceCallback = object : IRequestCallback {
+    private var callback = object : IRequestCallback{
         override fun isSuccesfull(response: JsonObject?) {
             response?.let {
-                calendar.value = raceListMapper.decodeResponse(jsonObject = it)
+                results.value = mapper.decodeResponse(response)
             }
         }
+
     }
 
     fun sendRequest() {
         viewModelScope.launch {
             service.sendRequest(
-                raceCallback,
-                apiService.getRaceCalendar()
+                callback,
+                apiService.getConstructorResults()
             )
         }
     }
 
-
-    fun getF1CircuitCountry(): F1CircuitCountry {
-        return f1Circ
+    fun f1Team(): F1Team {
+        return f1Team
     }
 }

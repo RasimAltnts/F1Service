@@ -1,6 +1,8 @@
 package com.example.f1service.model
 
 data class DF1LastRaceModel(
+    var session:String? = null,
+    var round:String ?= null,
     var circuitName: String = "",
     var circuitId: String = "",
     var pilot: ArrayList<DLastRaceResult>? = ArrayList()

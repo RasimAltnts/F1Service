@@ -1,7 +1,6 @@
 package com.example.f1service.di
 
-import com.example.f1service.mapper.LastRaceMapper
-import com.example.f1service.mapper.NextRaceMapper
+import com.example.f1service.mapper.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,5 +21,23 @@ object Mapper {
     @Singleton
     fun lastRaceMapper(): LastRaceMapper {
         return LastRaceMapper()
+    }
+
+    @Provides
+    @Singleton
+    fun raceListMapper(): RaceListMapper {
+        return RaceListMapper()
+    }
+
+    @Provides
+    @Singleton
+    fun constructorMapper(): ConstructorMapper {
+        return ConstructorMapper()
+    }
+
+    @Provides
+    @Singleton
+    fun driverMapper(): DriverMapper {
+        return DriverMapper()
     }
 }
