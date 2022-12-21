@@ -6,48 +6,127 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="data::" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8cb983e-ecf4-42af-a6f2-3c044864c12e" name="Changes" comment="Added DI F1CountryCircuit, F1DriverNumber, F1Cars">
+    <list default="true" id="c8cb983e-ecf4-42af-a6f2-3c044864c12e" name="Changes" comment="Fixed Driver Points Text">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/di/F1Repository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/di/F1Repository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/di/Mapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/di/Mapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/extension/TimeZoneExtension.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/extension/TimeZoneExtension.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/mapper/LastRaceMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/mapper/LastRaceMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/DF1ConstructorModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/DF1ConstructorModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/DF1CurrentSession.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/DF1CurrentSession.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/DF1DriverModels.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/DF1DriversModels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/DF1DriversModels.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/DF1LastRaceModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/DF1LastRaceModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/driverModel/Driver.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/driverModel/DriverTable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/driverModel/MRData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Const/Constructor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Const/ConstructorStanding.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Const/F1Constructor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Const/MRData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Const/StandingsLists.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Const/StandingsTable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/Circuit.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/DF1CurrentSessionModels.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/FirstPractice.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/Location.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/MRData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/Qualifying.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/Race.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/RaceTable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/SecondPractice.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/Sprint.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1CurrentSessionModel/ThirdPractice.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Driver/Constructor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Driver/Driver.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Driver/DriverStanding.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Driver/F1DriverStanding.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Driver/MRData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Driver/StandingsLists.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1Driver/StandingsTable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/AverageSpeed.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/Circuit.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/Constructor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/Driver.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/FastestLap.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/LastRaceResults.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/Location.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/MRData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/Race.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/RaceTable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/Result.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/Time.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1LastRace/TimeX.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/Circuit.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/FirstPractice.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/Location.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/MRData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/NextRaceModels.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/Qualifying.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/Race.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/RaceTable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/SecondPractice.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1NextRace/Sprint.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1QulifityRes/Circuit.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1QulifityRes/Constructor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1QulifityRes/Driver.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1QulifityRes/F1Qualifying.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1QulifityRes/Location.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1QulifityRes/MRData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1QulifityRes/QualifyingResult.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1QulifityRes/Race.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1QulifityRes/RaceTable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/AverageSpeed.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/Circuit.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/Constructor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/Driver.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/FastestLap.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/Location.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/MRData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/Race.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/RaceResults.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/RaceTable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/Result.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/Time.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1RaceResults/TimeX.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/Circuit.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/Constructor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/Driver.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/F1SprintModels.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/FastestLap.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/Location.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/MRData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/Race.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/RaceTable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/SprintResult.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/Time.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1SprintModel/TimeX.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/navigation/BottomNav.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/navigation/BottomNav.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/navigation/BottomNavItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/navigation/BottomNavItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/service/IApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/service/IApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/Container.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/Container.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/constructor/ConstructorUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/constructor/ConstructorUI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/driver/DriverUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/driver/DriverUI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/lastRaceResults/LastRaceUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/lastRaceResults/LastRaceUI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/raceList/RaceListUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/raceList/RaceListUI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/raceList/RaceListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/container/raceList/RaceListViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/nextRace/NextRaceUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/nextRace/NextRaceUI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/theme/Color.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/theme/Theme.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/theme/Type.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/theme/Type.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[adb-d5c8a722-9ifRGt._adb-tls-connect._tcp.]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/wishi/.android/avd/Pixel_4_API_28.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -93,8 +172,8 @@
         <option value="Kotlin File" />
         <option value="Kotlin Object" />
         <option value="Kotlin Sealed Class" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
@@ -127,8 +206,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="memory.settings.postsync.last.time.stamp" value="1670359513166" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1671393010178" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -136,11 +215,11 @@
       <recent name="com.example.f1service.ui.nextRace" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/example/f1service/model/F1" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/font" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/example/f1service/ui/homepage" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/example/f1service/extension" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/example/f1service/service" />
     </key>
     <key name="android.template.2027622075">
       <recent name="com.example.f1service.ui.driver" />
@@ -544,7 +623,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670359776125</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added Race List, Driver Standing and Constructor Standing Page">
+      <created>1671315148770</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671315148770</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fixed Driver Points Text">
+      <created>1671315285537</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671315285537</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -568,6 +661,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added NextRace,LastRace and RaceList" />
     <MESSAGE value="Added DI F1CountryCircuit, F1DriverNumber, F1Cars" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added DI F1CountryCircuit, F1DriverNumber, F1Cars" />
+    <MESSAGE value="Added Race List, Driver Standing and Constructor Standing Page" />
+    <MESSAGE value="Fixed Driver Points Text" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Driver Points Text" />
   </component>
 </project>
