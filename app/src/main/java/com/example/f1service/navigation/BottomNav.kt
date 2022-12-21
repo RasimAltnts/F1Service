@@ -1,15 +1,20 @@
 package com.example.f1service.navigation
 
+import android.os.Build
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -21,6 +26,8 @@ import com.example.f1service.ui.container.constructor.ConstructorUI
 import com.example.f1service.ui.container.driver.DriverUI
 import com.example.f1service.ui.container.lastRaceResults.LastRaceUI
 import com.example.f1service.ui.container.raceList.RaceListUI
+import com.example.f1service.ui.theme.DarkColorPalette
+import com.example.f1service.ui.theme.LightColorPalette
 
 @Composable
 fun BottomNav(navController:NavController) {
@@ -33,8 +40,8 @@ fun BottomNav(navController:NavController) {
     )
 
     BottomNavigation(
-        backgroundColor = Color.Black,
-        contentColor = Color.White,
+        backgroundColor = bottomNavigationColor(),
+        contentColor = Color.Black,
         modifier = Modifier
             .height(60.dp)
             .clip(RoundedCornerShape(topEnd = 10.dp, topStart = 10.dp))
@@ -47,7 +54,8 @@ fun BottomNav(navController:NavController) {
                 icon = {
                     Icon(painterResource(id = item.icon),
                         contentDescription = item.title,
-                    modifier = Modifier.size(32.dp))},
+                        modifier = Modifier
+                            .size(32.dp))},
                 selected = currentRoute == item.route,
                 onClick = {
                     navController.navigate(item.route) {
@@ -78,5 +86,22 @@ fun NavigationGraph(navController: NavHostController) {
         }
     }
 }
+
+@Composable
+fun bottomNavigationColor(): Color {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        when (isSystemInDarkTheme()) {
+            true -> return dynamicDarkColorScheme(LocalContext.current).primary
+            false -> return dynamicLightColorScheme(LocalContext.current).primary
+        }
+    }
+    else {
+        when(isSystemInDarkTheme()) {
+            true -> return LightColorPalette.nextRaceGradientEnd
+            false -> return DarkColorPalette.nextRaceGradientEnd
+        }
+    }
+}
+
 
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -32,6 +33,8 @@ import com.example.f1service.constant.F1Driver
 import com.example.f1service.constant.F1Team
 import com.example.f1service.model.DF1DriversModels
 import com.example.f1service.model.F1DriverModels
+import com.example.f1service.ui.theme.DarkColorPalette
+import com.example.f1service.ui.theme.LightColorPalette
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
@@ -57,7 +60,7 @@ fun DriverUI(viewModel: DriverViewModel = hiltViewModel()) {
     {
         Text(
             text = "${list.value.session} Session ${list.value.round} Round Driver Standlist",
-            color = Color.White,
+            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
         )
         LazyColumn(
@@ -217,5 +220,15 @@ private fun DriverImageView(
                 alignment = Alignment.TopStart,
                 contentDescription = null)
         }
+    }
+}
+
+@Composable
+private fun textColor(): Color {
+    if (isSystemInDarkTheme()) {
+        return DarkColorPalette.textColor
+    }
+    else {
+        return LightColorPalette.textColor
     }
 }

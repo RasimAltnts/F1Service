@@ -12,10 +12,26 @@ val Pink40 = Color(0xFF7D5260)
 
 class LightColorPalette private constructor() {
     companion object {
-        //val nextRaceGradientStart = Color(0xFF00A3FF)
-        //val nextRaceGradientEnd = Color(0xFF000000)
+
+        val nextRaceGradientStart = Color(0xFFFFA800)
+        val nextRaceGradientEnd = Color(0xCCFFFFFF)
+
+        val background = Color(0xCCFFFFFF)
+        val iconColor = Color(0xCC000000)
+
+        val textColor = Color(0xCC000000)
+    }
+}
+
+class DarkColorPalette private constructor() {
+    companion object {
 
         val nextRaceGradientStart = Color(0xFFFFA800)
         val nextRaceGradientEnd = Color(0xA6181818)
+
+        val background = Color(0xCCFFFFFF)
+        val iconColor = Color(0xCCFFFFFF)
+
+        val textColor = Color(0xCCFFFFFF)
     }
 }

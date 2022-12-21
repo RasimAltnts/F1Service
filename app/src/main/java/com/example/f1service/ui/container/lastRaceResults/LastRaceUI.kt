@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
@@ -29,6 +30,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.f1service.constant.F1Team
 import com.example.f1service.constant.F1Driver
 import com.example.f1service.model.DF1LastRaceModel
+import com.example.f1service.ui.theme.DarkColorPalette
+import com.example.f1service.ui.theme.LightColorPalette
 
 
 @SuppressLint("MutableCollectionMutableState")
@@ -57,14 +60,14 @@ fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
     {
         Text(
             text = "${list.value.session} Session ${list.value.round} Round",
-            color = Color.White,
+            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp),
             maxLines = 1
         )
 
         Text(
             text = "${list.value.circuitName} Result",
-            color = Color.White,
+            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp),
             maxLines = 1
         )
@@ -227,6 +230,17 @@ private fun DriverImageView(
                 alignment = Alignment.TopStart,
                 contentDescription = null)
         }
+    }
+}
+
+
+@Composable
+private fun textColor(): Color {
+    if (isSystemInDarkTheme()) {
+        return DarkColorPalette.textColor
+    }
+    else {
+        return LightColorPalette.textColor
     }
 }
 

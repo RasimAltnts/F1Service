@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -27,6 +28,8 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.f1service.constant.F1CircuitCountry
 import com.example.f1service.model.F1CurrentSession
+import com.example.f1service.ui.theme.DarkColorPalette
+import com.example.f1service.ui.theme.LightColorPalette
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
@@ -52,7 +55,7 @@ fun RaceListUI(viewModel: RaceListViewModel = hiltViewModel()) {
     {
         Text(
             text = "${session.value} Session Race Calendar",
-            color = Color.White,
+            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
         )
 
@@ -358,7 +361,7 @@ fun Divider() {
     Row(modifier = Modifier
         .fillMaxWidth(0.8f)
         .height(5.dp)
-        .offset(20.dp,5.dp),
+        .offset(20.dp, 5.dp),
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.Start) {
 
@@ -372,8 +375,8 @@ fun Divider() {
         Box(modifier = Modifier
             .width(150.dp)
             .height(1.dp)
-            .offset(0.dp,2.dp)
-            .padding(0.dp,0.dp,0.dp,0.dp)
+            .offset(0.dp, 2.dp)
+            .padding(0.dp, 0.dp, 0.dp, 0.dp)
             .background(Color.Gray)) {
 
         }
@@ -407,6 +410,16 @@ private fun CountryImageView(
             GlideImage(model = countryUrl,
                 contentDescription = null)
         }
+    }
+}
+
+@Composable
+private fun textColor(): Color {
+    if (isSystemInDarkTheme()) {
+        return DarkColorPalette.textColor
+    }
+    else {
+        return LightColorPalette.textColor
     }
 }
 

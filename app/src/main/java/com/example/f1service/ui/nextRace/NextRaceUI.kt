@@ -1,9 +1,7 @@
 package com.example.f1service.ui.nextRace
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import android.os.Build
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -12,9 +10,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -27,6 +27,7 @@ import com.example.f1service.extension.time
 import com.example.f1service.model.model.DNextRaceModel
 import com.example.f1service.ui.theme.LightColorPalette
 import com.example.f1service.R
+import com.example.f1service.ui.theme.DarkColorPalette
 import java.time.ZonedDateTime
 import java.util.*
 
@@ -76,7 +77,8 @@ fun NextRaceUI(
     Card(modifier = Modifier
         .fillMaxWidth()
         .fillMaxHeight()
-        .background(Color.Transparent),
+        .clip(RoundedCornerShape(5.dp)),
+        shape = RoundedCornerShape(5.dp),
         elevation = CardDefaults.cardElevation(
             5.dp
         ),
@@ -95,10 +97,10 @@ fun NextRaceUI(
                 .background(
                     brush = Brush.radialGradient(
                         colors = listOf(
-                            LightColorPalette.nextRaceGradientEnd,
-                            LightColorPalette.nextRaceGradientStart,
+                            nextRaceUIBgEnd(),
+                            nextRaceUIBgStart()
                         ),
-                        radius = 3000f,
+                        radius = 1000f,
                         center = Offset.Infinite
                     )
                 )) {
@@ -127,7 +129,7 @@ fun NextRaceUI(
                     .wrapContentWidth(Alignment.Start)
                     .padding(10.dp),
                     text = "F1 Service",
-                    color = Color.White,
+                    color = textColor(),
                     fontSize = 30.sp,
                     fontFamily = FontFamily.Serif)
 
@@ -168,11 +170,11 @@ fun NextRaceUI(
                         .padding(10.dp, 0.dp, 5.dp, 0.dp)
                         .background(Color.Transparent)) {
 
-                        Text(text = circuitName.value, maxLines = 1)
+                        Text(text = circuitName.value, maxLines = 1, color = textColor())
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text(text = "${nextRaceCity.value}, ${nextRaceCountry.value }", maxLines = 1)
+                        Text(text = "${nextRaceCity.value}, ${nextRaceCountry.value }", maxLines = 1, color = textColor())
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text(text = nextRaceDate.value)
+                        Text(text = nextRaceDate.value, color = textColor())
                     }
                 }
             }
@@ -194,7 +196,7 @@ fun NextRaceUI(
             Text(text = value,
                 fontFamily = FontFamily.Serif,
                 fontSize = 20.sp,
-                color = Color.White
+                color = textColor()
             )
         }
     }
@@ -212,7 +214,7 @@ private fun NextRaceTitle(title: String) {
         Text(text = title,
             fontFamily = FontFamily.Serif,
             fontSize = 10.sp,
-            color = Color.White
+            color = textColor()
         )
     }
 }
@@ -225,6 +227,42 @@ fun encodeRaceTime(model:DNextRaceModel): Date? {
     return date
 }
 
+
+
+@Composable
+private fun textColor(): Color {
+    if (isSystemInDarkTheme()) {
+        return DarkColorPalette.textColor
+    }
+    else {
+        return LightColorPalette.textColor
+    }
+}
+
+@Composable
+private fun nextRaceUIBgStart(): Color {
+    // Use Dynamic Color
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ) {
+        when(isSystemInDarkTheme()) {
+            true -> return dynamicDarkColorScheme(LocalContext.current).primary
+            false -> return dynamicLightColorScheme(LocalContext.current).primary
+        }
+    }
+    else {
+        when(isSystemInDarkTheme()) {
+            true -> return DarkColorPalette.nextRaceGradientStart
+            false -> return LightColorPalette.nextRaceGradientStart
+        }
+    }
+}
+
+@Composable
+private fun nextRaceUIBgEnd(): Color {
+    when(isSystemInDarkTheme()) {
+        true -> return DarkColorPalette.nextRaceGradientEnd
+        false -> return LightColorPalette.nextRaceGradientEnd
+    }
+}
 
 
 
