@@ -3,6 +3,7 @@ package com.example.f1service.ui.container.constructor
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,6 +31,8 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.example.f1service.constant.F1Team
 import com.example.f1service.model.DF1ConstructorModel
 import com.example.f1service.model.F1ConstructorModel
+import com.example.f1service.ui.theme.DarkColorPalette
+import com.example.f1service.ui.theme.LightColorPalette
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
@@ -55,7 +58,7 @@ fun ConstructorUI(viewModel:ConstructorViewModel = hiltViewModel()) {
 
         Text(
             text = "${list.value.series} Session Constructor Results",
-            color = Color.White,
+            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
         )
 
@@ -174,7 +177,8 @@ fun CardViewUI(
                 color = Color.Black,
                 fontSize = 18.sp,
                 maxLines = 1,
-                modifier = Modifier.padding(20.dp,20.dp,0.dp,0.dp)
+                modifier = Modifier
+                    .padding(20.dp, 20.dp, 0.dp, 0.dp)
                     .background(Color.Transparent))
 
         }
@@ -189,7 +193,8 @@ fun CardViewUI(
                 color = Color.Black,
                 fontSize = 18.sp,
                 maxLines = 1,
-                modifier = Modifier.padding(20.dp,20.dp,0.dp,0.dp)
+                modifier = Modifier
+                    .padding(20.dp, 20.dp, 0.dp, 0.dp)
                     .background(Color.Transparent))
 
         }
@@ -216,5 +221,15 @@ private fun ConstructorImageView(
             GlideImage(model = url,
                 contentDescription = null)
         }
+    }
+}
+
+@Composable
+private fun textColor(): Color {
+    if (isSystemInDarkTheme()) {
+        return DarkColorPalette.textColor
+    }
+    else {
+        return LightColorPalette.textColor
     }
 }
