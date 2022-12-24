@@ -20,6 +20,10 @@ import com.example.f1service.ui.container.Container
 import com.example.f1service.ui.nextRace.NextRaceUI
 import com.example.f1service.ui.nextRace.NextRaceViewModel
 import com.example.f1service.ui.theme.F1ServiceComposeTheme
+import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.app
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -31,6 +35,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val viewModel by viewModels<NextRaceViewModel>()
+
+        val fireStoreDatabase = FirebaseFirestore.getInstance()
+        fireStoreDatabase.collection("DriverImageURL")
+            .get()
+            .addOnSuccessListener {
+                it.forEach { document ->
+                    val doc = document.id
+                    println("::${doc}")
+                    println("::${document.get("maxVerstappen")}")
+                }
+            }
+
 
         setContent {
             F1ServiceComposeTheme {

@@ -2,10 +2,12 @@ package com.example.f1service.di
 
 
 import com.example.f1service.constant.*
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
@@ -15,13 +17,17 @@ object F1Repository {
     @Provides
     @Singleton
     fun driver(): F1Driver {
-        return F1Driver()
+        return F1Driver(
+            FirebaseService.firebaseService()
+        )
     }
 
     @Provides
     @Singleton
     fun team(): F1Team {
-        return F1Team()
+        return F1Team(
+            FirebaseService.firebaseService()
+        )
     }
 
 
@@ -30,18 +36,4 @@ object F1Repository {
     fun country(): F1CircuitCountry{
         return F1CircuitCountry()
     }
-
-    @Provides
-    @Singleton
-    fun f1Cars(): F1Cars{
-        return F1Cars()
-    }
-
-    @Provides
-    @Singleton
-    fun f1DriverNumber(): F1DriverNumber{
-        return F1DriverNumber()
-    }
-
-
 }

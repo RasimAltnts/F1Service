@@ -32,6 +32,8 @@ import com.example.f1service.constant.F1Driver
 import com.example.f1service.model.DF1LastRaceModel
 import com.example.f1service.ui.theme.DarkColorPalette
 import com.example.f1service.ui.theme.LightColorPalette
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
 @SuppressLint("MutableCollectionMutableState")
@@ -200,8 +202,9 @@ fun Holder(
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun DriverImageView(
-    driverURL:String,
-    constructorURL:String) {
+    driverURL:String?,
+    constructorURL:String?
+) {
     Row(modifier = Modifier
         .width(60.dp)
         .height(60.dp)

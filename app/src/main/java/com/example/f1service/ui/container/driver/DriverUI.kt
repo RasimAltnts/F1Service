@@ -49,6 +49,8 @@ fun DriverUI(viewModel: DriverViewModel = hiltViewModel()) {
         it.list?.let { result.value = it }
     }
 
+
+
     viewModel.sendRequest()
 
     Column(modifier = Modifier
@@ -71,7 +73,7 @@ fun DriverUI(viewModel: DriverViewModel = hiltViewModel()) {
                     items = it,
                     itemContent = {
                         Holder(item = it,
-                            mF1Driver = viewModel.getDriverImage(),
+                            mF1Driver = viewModel.f1Driver,
                             mF1Cons = viewModel.getConsImage())
                     })
             }
@@ -190,8 +192,8 @@ fun Holder(
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun DriverImageView(
-    driverURL:String,
-    constructorURL:String) {
+    driverURL:String?,
+    constructorURL:String?) {
     Row(modifier = Modifier
         .width(60.dp)
         .height(60.dp)

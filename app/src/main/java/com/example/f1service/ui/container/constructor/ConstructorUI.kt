@@ -205,7 +205,8 @@ fun CardViewUI(
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun ConstructorImageView(
-    url:String) {
+    url:String?
+) {
     Row(modifier = Modifier
         .width(60.dp)
         .height(60.dp)
