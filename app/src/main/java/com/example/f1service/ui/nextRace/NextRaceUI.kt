@@ -1,11 +1,13 @@
 package com.example.f1service.ui.nextRace
 
 import android.os.Build
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -13,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -47,7 +50,6 @@ fun NextRaceUI(
     val nextRaceCity = remember { mutableStateOf("") }
     val nextRaceCountry = remember { mutableStateOf("") }
     val nextRaceDate = remember { mutableStateOf("") }
-
 
     val iNextRaceCounter = object : INextRaceCounter {
         override fun counter(counter: DCounter) {
@@ -147,17 +149,6 @@ fun NextRaceUI(
                         .padding(10.dp, 10.dp, 10.dp, 10.dp)
                         .wrapContentWidth(Alignment.Start)
                         .wrapContentHeight(Alignment.Top)
-                        .border(
-                            0.3.dp, brush = Brush.linearGradient(
-                                colors = listOf(
-                                    Color.White,
-                                    Color.Black,
-                                ),
-                                tileMode = TileMode.Mirror
-                            ),
-                            RoundedCornerShape(10)
-                        ),
-
                 ) {
                     CountDownTimerUI(title = "Days",day.value)
                     CountDownTimerUI(title = "Hours",hours.value)
@@ -240,7 +231,7 @@ private fun textColor(): Color {
 }
 
 @Composable
-private fun nextRaceUIBgStart(): Color {
+fun nextRaceUIBgStart(): Color {
     // Use Dynamic Color
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ) {
         when(isSystemInDarkTheme()) {
@@ -257,7 +248,7 @@ private fun nextRaceUIBgStart(): Color {
 }
 
 @Composable
-private fun nextRaceUIBgEnd(): Color {
+fun nextRaceUIBgEnd(): Color {
     when(isSystemInDarkTheme()) {
         true -> return DarkColorPalette.nextRaceGradientEnd
         false -> return LightColorPalette.nextRaceGradientEnd
