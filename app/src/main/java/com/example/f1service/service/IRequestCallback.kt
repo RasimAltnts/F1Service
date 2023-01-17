@@ -5,10 +5,10 @@ import com.google.gson.JsonObject
 interface IRequestCallback {
     fun isSuccesfull(response: JsonObject?)
 
-    fun isFailed(ErrorCode:Int){
+    fun isFailed(ErrorCode: Int) {
         println("ErrorCode:$ErrorCode")
     }
-    fun isError(){
+    fun isError() {
         println("Request is Error")
     }
 }

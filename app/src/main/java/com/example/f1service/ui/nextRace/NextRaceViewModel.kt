@@ -22,9 +22,9 @@ class NextRaceViewModel @Inject constructor(
     val apiService: ApiService,
 ) : ViewModel() {
 
-    private var mDNextRaceModel:DNextRaceModel ?= null
+    private var mDNextRaceModel: DNextRaceModel ? = null
 
-    val nextRaceInfo:MutableLiveData<DNextRaceModel> by lazy {
+    val nextRaceInfo: MutableLiveData<DNextRaceModel> by lazy {
         MutableLiveData<DNextRaceModel> ()
     }
 
@@ -43,8 +43,7 @@ class NextRaceViewModel @Inject constructor(
                     nextRaceMapper.decodeNextRaceResponse(it)
                 if (mDNextRaceModel != null) {
                     nextRaceInfo.value = mDNextRaceModel
-                }
-                else {
+                } else {
                     sendLastRaceRequest()
                 }
             }
@@ -69,7 +68,7 @@ class NextRaceViewModel @Inject constructor(
         }
     }
 
-    private fun encodeLastRaceResponse(res:JsonObject): DNextRaceModel {
+    private fun encodeLastRaceResponse(res: JsonObject): DNextRaceModel {
         val gson = Gson()
         val mDF1LastRaceResults = gson.fromJson(res, LastRaceResults::class.java)
 
@@ -87,6 +86,5 @@ class NextRaceViewModel @Inject constructor(
         }
 
         return mDNextRaceModel
-
     }
 }

@@ -5,7 +5,6 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -52,8 +51,8 @@ fun Container() {
                 val heightOffset = size.height * offset
                 return LinearGradientShader(
                     colors = color,
-                    from = Offset(widthOffset,heightOffset),
-                    to = Offset(widthOffset + size.width,heightOffset + size.height),
+                    from = Offset(widthOffset, heightOffset),
+                    to = Offset(widthOffset + size.width, heightOffset + size.height),
                     tileMode = TileMode.Mirror
                 )
             }
@@ -62,22 +61,26 @@ fun Container() {
 
     val navController = rememberNavController()
 
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .clip(RoundedCornerShape(15.dp))
-        .border(BorderStroke(1.dp,brush=brush), RoundedCornerShape(15.dp))) {
-
-        Box(modifier = Modifier
-            .fillMaxHeight(1f)
+    Column(
+        modifier = Modifier
             .fillMaxWidth()
-            .shadow(
-                2.dp,
-                shape = RoundedCornerShape(1.dp),
-                clip = false,
-                ambientColor = Color.Black,
-                spotColor = Color.Black
-            )) {
+            .fillMaxHeight()
+            .clip(RoundedCornerShape(15.dp))
+            .border(BorderStroke(1.dp, brush = brush), RoundedCornerShape(15.dp))
+    ) {
+
+        Box(
+            modifier = Modifier
+                .fillMaxHeight(1f)
+                .fillMaxWidth()
+                .shadow(
+                    2.dp,
+                    shape = RoundedCornerShape(1.dp),
+                    clip = false,
+                    ambientColor = Color.Black,
+                    spotColor = Color.Black
+                )
+        ) {
 
             Scaffold(
                 modifier = Modifier.fillMaxHeight(1f),
@@ -85,7 +88,6 @@ fun Container() {
             ) {
                 NavigationGraph(navController = navController)
             }
-
         }
     }
 }

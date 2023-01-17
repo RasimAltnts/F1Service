@@ -1,6 +1,5 @@
 package com.example.f1service.extension
 
-
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.time.*
@@ -15,19 +14,18 @@ fun ZonedDateTime.timezone(timezone: String): Date {
 }
 
 @SuppressLint("SimpleDateFormat")
-fun ZonedDateTime.toString(timezone: Date):String {
+fun ZonedDateTime.toString(timezone: Date): String {
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     return simpleDateFormat.format(timezone)
 }
 
-fun ZonedDateTime.time(date:String,time:String):Date {
-    val timezone = "${date} ${time.subSequence(0, 8)}"
+fun ZonedDateTime.time(date: String, time: String): Date {
+    val timezone = "$date ${time.subSequence(0, 8)}"
     return ZonedDateTime.now().timezone(timezone)
 }
 
-
-fun ZonedDateTime.compareDate(date: Date):Boolean {
-    var result:Boolean = true
+fun ZonedDateTime.compareDate(date: Date): Boolean {
+    var result: Boolean = true
     val calendar = Calendar.getInstance()
     val currentDate = calendar.time
     val compare = date.compareTo(currentDate)

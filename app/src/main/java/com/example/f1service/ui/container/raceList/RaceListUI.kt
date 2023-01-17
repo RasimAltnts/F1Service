@@ -46,21 +46,22 @@ fun RaceListUI(viewModel: RaceListViewModel = hiltViewModel()) {
 
     viewModel.sendRequest()
 
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .background(Color.Transparent),
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .background(Color.Transparent),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally)
-    {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = "${session.value} Session Race Calendar",
             color = textColor(),
-            modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
+            modifier = Modifier.padding(0.dp, 10.dp, 0.dp, 0.dp)
         )
 
         LazyColumn(
-            contentPadding = PaddingValues(0.dp,0.dp,0.dp,60.dp),
+            contentPadding = PaddingValues(0.dp, 0.dp, 0.dp, 60.dp),
         ) {
             currentSession.value.let {
                 items(
@@ -70,16 +71,17 @@ fun RaceListUI(viewModel: RaceListViewModel = hiltViewModel()) {
                             item = it,
                             mF1CircuitCountry = viewModel.getF1CircuitCountry()
                         )
-                    })
+                    }
+                )
             }
         }
-
     }
-
 }
 
-@OptIn(ExperimentalMaterial3Api::class,
-    ExperimentalGlideComposeApi::class)
+@OptIn(
+    ExperimentalMaterial3Api::class,
+    ExperimentalGlideComposeApi::class
+)
 @Composable
 fun Holder(
     item: F1CurrentSession,
@@ -87,27 +89,30 @@ fun Holder(
 ) {
     val expandedHeight = remember { mutableStateOf(90.dp) }
 
-    Card(modifier = Modifier
-        .fillMaxWidth()
-        .height(expandedHeight.value)
-        .background(Color.Transparent)
-        .padding(10.dp),
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(expandedHeight.value)
+            .background(Color.Transparent)
+            .padding(10.dp),
         elevation = CardDefaults.cardElevation(
             2.dp
         ),
-        border = BorderStroke(0.3.dp, brush = Brush.linearGradient(
-            colors = listOf(
-                Color.White,
-                Color.Black,
-            ),
-            tileMode = TileMode.Repeated
-        )),
+        border = BorderStroke(
+            0.3.dp,
+            brush = Brush.linearGradient(
+                colors = listOf(
+                    Color.White,
+                    Color.Black,
+                ),
+                tileMode = TileMode.Repeated
+            )
+        ),
         onClick = {
             if (!item.expanded) {
                 expandedHeight.value = 180.dp
                 item.expanded = true
-            }
-            else{
+            } else {
                 expandedHeight.value = 90.dp
                 item.expanded = false
             }
@@ -118,34 +123,34 @@ fun Holder(
                 item = item,
                 mF1CircuitCountry = mF1CircuitCountry
             )
-
-        }
-        else NotExpandedCardUI(
+        } else NotExpandedCardUI(
             item = item,
-            mF1CircuitCountry = mF1CircuitCountry)
+            mF1CircuitCountry = mF1CircuitCountry
+        )
     }
 }
 
-
 @Composable
 private fun NotExpandedCardUI(
-    item:F1CurrentSession,
+    item: F1CurrentSession,
     mF1CircuitCountry: F1CircuitCountry
 ) {
-    Row(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .background(Color.White)
-        .padding(10.dp, 0.dp),
-        horizontalArrangement = Arrangement.Center)
-    {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .background(Color.White)
+            .padding(10.dp, 0.dp),
+        horizontalArrangement = Arrangement.Center
+    ) {
 
         Row(
             verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.Start,
             modifier = Modifier
                 .size(60.dp)
-                .offset(20.dp, 10.dp)) {
+                .offset(20.dp, 10.dp)
+        ) {
 
             mF1CircuitCountry.getLink(item.country)?.let {
                 CountryImageView(
@@ -156,89 +161,104 @@ private fun NotExpandedCardUI(
 
         Spacer(modifier = Modifier.width(20.dp))
 
-        Column(modifier = Modifier
-            .fillMaxHeight()
-            .width(2.dp),
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(2.dp),
             horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Top) {
+            verticalArrangement = Arrangement.Top
+        ) {
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(20.dp)
-                .background(Color.Gray)) {
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .background(Color.Gray)
+            ) {
             }
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(20.dp)
-                .offset(0.dp, 30.dp)
-                .background(Color.Gray)) {
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .offset(0.dp, 30.dp)
+                    .background(Color.Gray)
+            ) {
             }
         }
 
         Spacer(modifier = Modifier.width(20.dp))
 
-        Column(modifier = Modifier
-            .padding(0.dp, 10.dp)
-            .wrapContentHeight()
-            .fillMaxWidth()
-            .background(Color.Transparent)) {
-            Row(modifier = Modifier
+        Column(
+            modifier = Modifier
+                .padding(0.dp, 10.dp)
+                .wrapContentHeight()
                 .fillMaxWidth()
-                .height(20.dp)
-                .background(Color.Transparent)) {
+                .background(Color.Transparent)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .background(Color.Transparent)
+            ) {
 
-                Text(modifier = Modifier
-                    .wrapContentHeight()
-                    .fillMaxWidth(),
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth(),
                     text = "${item.racename},${item.location}",
                     maxLines = 1,
                     color = Color.Black,
-                    fontSize = 18.sp)
+                    fontSize = 18.sp
+                )
             }
 
             Spacer(modifier = Modifier.height(5.dp))
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(20.dp)
-                .background(Color.Transparent)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .background(Color.Transparent)
+            ) {
 
-                Text(modifier = Modifier
-                    .wrapContentHeight()
-                    .fillMaxWidth(),
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth(),
                     text = "${item.date},${item.time},${item.location.country}",
                     maxLines = 1,
                     color = Color.Black,
-                    fontSize = 12.sp)
+                    fontSize = 12.sp
+                )
             }
         }
     }
 }
 
-
 @Composable
 private fun ExpandedCardViewUI(
-    item:F1CurrentSession,
+    item: F1CurrentSession,
     mF1CircuitCountry: F1CircuitCountry
 ) {
-    Row(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .background(Color.White)
-        .padding(10.dp, 0.dp),
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .background(Color.White)
+            .padding(10.dp, 0.dp),
         horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically)
-    {
+        verticalAlignment = Alignment.CenterVertically
+    ) {
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier
                 .size(60.dp)
-                .offset(20.dp, 5.dp)) {
+                .offset(20.dp, 5.dp)
+        ) {
 
             mF1CircuitCountry.getLink(item.country)?.let {
                 CountryImageView(
@@ -249,143 +269,174 @@ private fun ExpandedCardViewUI(
 
         Spacer(modifier = Modifier.width(20.dp))
 
-        Column(modifier = Modifier
-            .fillMaxHeight()
-            .width(2.dp)
-            .background(Color.Transparent),
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(2.dp)
+                .background(Color.Transparent),
             horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Top ) {
+            verticalArrangement = Arrangement.Top
+        ) {
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(40.dp)
-                .background(Color.Gray)) {
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .background(Color.Gray)
+            ) {
             }
 
-            Spacer(modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
-                .background(Color.Transparent))
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+                    .background(Color.Transparent)
+            )
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(40.dp)
-                .background(Color.Gray)) {
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .background(Color.Gray)
+            ) {
             }
-
         }
 
         Spacer(modifier = Modifier.width(20.dp))
 
-        Column(modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()
-            .background(Color.Transparent)
-            .padding(0.dp, 10.dp)) {
-            Row(modifier = Modifier
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
                 .fillMaxWidth()
-                .wrapContentHeight()
-                .background(Color.Transparent)) {
-
-                Text(modifier = Modifier
+                .background(Color.Transparent)
+                .padding(0.dp, 10.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
                     .wrapContentHeight()
-                    .fillMaxWidth(),
+                    .background(Color.Transparent)
+            ) {
+
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth(),
                     text = "${item.racename},${item.location}",
                     maxLines = 1,
                     color = Color.Black,
-                    fontSize = 18.sp)
+                    fontSize = 18.sp
+                )
             }
 
             Spacer(modifier = Modifier.height(5.dp))
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .background(Color.Transparent)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .background(Color.Transparent)
+            ) {
 
                 Column(modifier = Modifier.fillMaxSize()) {
-                    Text(modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth(),
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .fillMaxWidth(),
                         text = "${item.date},${item.time},${item.location.country}",
                         maxLines = 1,
                         color = Color.Black,
-                        fontSize = 12.sp)
-                    
-                    Spacer(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(10.dp))
+                        fontSize = 12.sp
+                    )
 
-                    Text(modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth(),
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(10.dp)
+                    )
+
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .fillMaxWidth(),
                         text = "First Prac : ${item.firstPractice?.date},${item.firstPractice?.time}",
                         maxLines = 1,
                         color = Color.Black,
-                        fontSize = 12.sp)
+                        fontSize = 12.sp
+                    )
 
-                    Spacer(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(10.dp))
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(10.dp)
+                    )
 
-                    Text(modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth(),
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .fillMaxWidth(),
                         text = "Sec Prac : ${item.secondPractice?.date},${item.secondPractice?.time}",
                         maxLines = 1,
                         color = Color.Black,
-                        fontSize = 12.sp)
+                        fontSize = 12.sp
+                    )
 
-                    Spacer(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(10.dp))
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(10.dp)
+                    )
 
-                    Text(modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth(),
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .fillMaxWidth(),
                         text = "Third Prac : ${item.thirdPractice?.date},${item.thirdPractice?.time}",
                         maxLines = 1,
                         color = Color.Black,
-                        fontSize = 12.sp)
+                        fontSize = 12.sp
+                    )
                 }
             }
         }
     }
 }
 
-
 @Composable
 fun Divider() {
-    Row(modifier = Modifier
-        .fillMaxWidth(0.8f)
-        .height(5.dp)
-        .offset(20.dp, 5.dp),
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(0.8f)
+            .height(5.dp)
+            .offset(20.dp, 5.dp),
         verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.Start) {
+        horizontalArrangement = Arrangement.Start
+    ) {
 
-        Box(modifier = Modifier
-            .size(5.dp)
-            .clip(CircleShape)
-            .background(Color.Gray)) {
-
+        Box(
+            modifier = Modifier
+                .size(5.dp)
+                .clip(CircleShape)
+                .background(Color.Gray)
+        ) {
         }
 
-        Box(modifier = Modifier
-            .width(150.dp)
-            .height(1.dp)
-            .offset(0.dp, 2.dp)
-            .padding(0.dp, 0.dp, 0.dp, 0.dp)
-            .background(Color.Gray)) {
-
+        Box(
+            modifier = Modifier
+                .width(150.dp)
+                .height(1.dp)
+                .offset(0.dp, 2.dp)
+                .padding(0.dp, 0.dp, 0.dp, 0.dp)
+                .background(Color.Gray)
+        ) {
         }
 
-        Box(modifier = Modifier
-            .size(5.dp)
-            .clip(CircleShape)
-            .background(Color.Gray)) {
-
+        Box(
+            modifier = Modifier
+                .size(5.dp)
+                .clip(CircleShape)
+                .background(Color.Gray)
+        ) {
         }
     }
 }
@@ -393,22 +444,27 @@ fun Divider() {
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun CountryImageView(
-    countryUrl:String) {
-    Row(modifier = Modifier
-        .width(60.dp)
-        .height(60.dp)
-        .background(Color.Transparent)
+    countryUrl: String
+) {
+    Row(
+        modifier = Modifier
+            .width(60.dp)
+            .height(60.dp)
+            .background(Color.Transparent)
     ) {
-        Row(modifier = Modifier
-            .size(45.dp)
-            .padding(1.dp)
-            .clip(CircleShape)
-            .border(0.3.dp, Color.Black, CircleShape),
+        Row(
+            modifier = Modifier
+                .size(45.dp)
+                .padding(1.dp)
+                .clip(CircleShape)
+                .border(0.3.dp, Color.Black, CircleShape),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            GlideImage(model = countryUrl,
-                contentDescription = null)
+            GlideImage(
+                model = countryUrl,
+                contentDescription = null
+            )
         }
     }
 }
@@ -417,11 +473,7 @@ private fun CountryImageView(
 private fun textColor(): Color {
     if (isSystemInDarkTheme()) {
         return DarkColorPalette.textColor
-    }
-    else {
+    } else {
         return LightColorPalette.textColor
     }
 }
-
-
-

@@ -6,18 +6,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class RestService {
 
-    fun sendRequest(@NonNull callback: IRequestCallback,request:Call<JsonObject>):Boolean {
+    fun sendRequest(@NonNull callback: IRequestCallback, request: Call<JsonObject>): Boolean {
         request.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if (response.isSuccessful) {
                     response.body().let {
                         callback.isSuccesfull(it)
                     }
-                }
-                else {
+                } else {
                     callback.isFailed(response.code())
                 }
             }

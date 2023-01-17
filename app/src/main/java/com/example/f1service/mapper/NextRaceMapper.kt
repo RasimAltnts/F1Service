@@ -1,7 +1,7 @@
 package com.example.f1service.mapper
 
-import com.example.f1service.model.model.DNextRaceModel
 import com.example.f1service.model.F1NextRace.NextRaceModels
+import com.example.f1service.model.model.DNextRaceModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 
@@ -30,8 +30,7 @@ class NextRaceMapper {
                     sprintTime = mDF1NextRace.mRData.raceTable.races[0].sprint?.time,
                     sprintDate = mDF1NextRace.mRData.raceTable.races[0].sprint?.date
                 )
-            }
-            else {
+            } else {
                 return DNextRaceModel(
                     nextRaceName = mDF1NextRace.mRData.raceTable.races[0].raceName,
                     nextRaceCircuitName = mDF1NextRace.mRData.raceTable.races[0].circuit.circuitName,

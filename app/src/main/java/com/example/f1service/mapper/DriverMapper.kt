@@ -10,7 +10,7 @@ import com.google.gson.JsonObject
 class DriverMapper {
     private var gson = Gson()
 
-    fun decodeResponse(jsonObject: JsonObject):DF1DriversModels {
+    fun decodeResponse(jsonObject: JsonObject): DF1DriversModels {
         val response = gson.fromJson(jsonObject, F1DriverStanding::class.java)
         val res = DF1DriversModels(
             response.mRData.standingsTable.standingsLists[0].season,
@@ -21,7 +21,7 @@ class DriverMapper {
         return res
     }
 
-    private fun encodeRes(list: List<DriverStanding>):ArrayList<F1DriverModels> {
+    private fun encodeRes(list: List<DriverStanding>): ArrayList<F1DriverModels> {
         val result: ArrayList<F1DriverModels> = ArrayList()
         val iterator = list.iterator()
         while (iterator.hasNext()) {

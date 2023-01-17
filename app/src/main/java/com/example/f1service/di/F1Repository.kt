@@ -1,13 +1,10 @@
 package com.example.f1service.di
 
-
 import com.example.f1service.constant.*
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
@@ -30,10 +27,9 @@ object F1Repository {
         )
     }
 
-
     @Provides
     @Singleton
-    fun country(): F1CircuitCountry{
+    fun country(): F1CircuitCountry {
         return F1CircuitCountry()
     }
 }

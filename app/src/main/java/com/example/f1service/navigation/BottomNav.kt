@@ -30,7 +30,7 @@ import com.example.f1service.ui.theme.DarkColorPalette
 import com.example.f1service.ui.theme.LightColorPalette
 
 @Composable
-fun BottomNav(navController:NavController) {
+fun BottomNav(navController: NavController) {
 
     val items = listOf(
         BottomNavItem.Home,
@@ -52,10 +52,13 @@ fun BottomNav(navController:NavController) {
         items.forEach { item ->
             BottomNavigationItem(
                 icon = {
-                    Icon(painterResource(id = item.icon),
+                    Icon(
+                        painterResource(id = item.icon),
                         contentDescription = item.title,
                         modifier = Modifier
-                            .size(32.dp))},
+                            .size(32.dp)
+                    )
+                },
                 selected = currentRoute == item.route,
                 onClick = {
                     navController.navigate(item.route) {
@@ -63,11 +66,11 @@ fun BottomNav(navController:NavController) {
                         launchSingleTop = true
                         restoreState = true
                     }
-                })
+                }
+            )
         }
     }
 }
-
 
 @Composable
 fun NavigationGraph(navController: NavHostController) {
@@ -94,14 +97,10 @@ fun bottomNavigationColor(): Color {
             true -> return dynamicDarkColorScheme(LocalContext.current).primary
             false -> return dynamicLightColorScheme(LocalContext.current).primary
         }
-    }
-    else {
-        when(isSystemInDarkTheme()) {
+    } else {
+        when (isSystemInDarkTheme()) {
             true -> return LightColorPalette.nextRaceGradientEnd
             false -> return DarkColorPalette.nextRaceGradientEnd
         }
     }
 }
-
-
-

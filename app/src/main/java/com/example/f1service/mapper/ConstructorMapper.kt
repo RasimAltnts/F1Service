@@ -14,8 +14,8 @@ class ConstructorMapper {
      * This Function make encode Constructor Response
      */
 
-    fun decodeResponse(jsonObject: JsonObject):DF1ConstructorModel {
-        val response = gson.fromJson(jsonObject,F1Constructor::class.java)
+    fun decodeResponse(jsonObject: JsonObject): DF1ConstructorModel {
+        val response = gson.fromJson(jsonObject, F1Constructor::class.java)
         val res = DF1ConstructorModel(
             response.mRData.standingsTable.standingsLists[0].season,
             response.mRData.standingsTable.standingsLists[0].round,
@@ -26,29 +26,25 @@ class ConstructorMapper {
         return res
     }
 
-
     private fun encodeConstructorList(list: List<ConstructorStanding>):
-            ArrayList<F1ConstructorModel>
-    {
-        val results: ArrayList<F1ConstructorModel> = ArrayList()
+        ArrayList<F1ConstructorModel> {
+            val results: ArrayList<F1ConstructorModel> = ArrayList()
 
-        val iterator = list.iterator()
-        while (iterator.hasNext()) {
-            val value = iterator.next()
-            val res = F1ConstructorModel (
-                name = value.constructor.name,
-                consId = value.constructor.constructorId,
-                position = value.position,
-                points = value.points,
-                wins = value.wins,
-                url = value.constructor.url,
-            )
+            val iterator = list.iterator()
+            while (iterator.hasNext()) {
+                val value = iterator.next()
+                val res = F1ConstructorModel(
+                    name = value.constructor.name,
+                    consId = value.constructor.constructorId,
+                    position = value.position,
+                    points = value.points,
+                    wins = value.wins,
+                    url = value.constructor.url,
+                )
 
-            results.add(res)
+                results.add(res)
+            }
+
+            return results
         }
-
-
-        return results
-
-    }
 }

@@ -8,45 +8,41 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
-import com.example.f1service.model.DLastRaceResult
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.f1service.constant.F1Team
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import com.example.f1service.constant.F1Driver
+import com.example.f1service.constant.F1Team
 import com.example.f1service.model.DF1LastRaceModel
+import com.example.f1service.model.DLastRaceResult
 import com.example.f1service.ui.nextRace.nextRaceUIBgEnd
 import com.example.f1service.ui.nextRace.nextRaceUIBgStart
 import com.example.f1service.ui.theme.DarkColorPalette
 import com.example.f1service.ui.theme.LightColorPalette
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-
 
 @SuppressLint("MutableCollectionMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
 
-    val list = remember { mutableStateOf(DF1LastRaceModel())}
-    val pilot= remember { mutableStateOf(ArrayList<DLastRaceResult> ()) }
+    val list = remember { mutableStateOf(DF1LastRaceModel()) }
+    val pilot = remember { mutableStateOf(ArrayList<DLastRaceResult> ()) }
 
     val data by viewModel.resultList.observeAsState()
     data?.let {
@@ -54,52 +50,53 @@ fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
         pilot.value = it.pilot!!
     }
 
-
     viewModel.sendRequest()
 
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .background(Color.Transparent),
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .background(Color.Transparent),
         verticalArrangement = Arrangement.Top,
-    horizontalAlignment = Alignment.CenterHorizontally)
-    {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = "${list.value.session} Session ${list.value.round} Round",
             color = textColor(),
-            modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp),
+            modifier = Modifier.padding(0.dp, 10.dp, 0.dp, 0.dp),
             maxLines = 1
         )
 
         Text(
             text = "${list.value.circuitName} Result",
             color = textColor(),
-            modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp),
+            modifier = Modifier.padding(0.dp, 10.dp, 0.dp, 0.dp),
             maxLines = 1
         )
 
         LazyColumn(
-            contentPadding = PaddingValues(0.dp,0.dp,0.dp,60.dp),
+            contentPadding = PaddingValues(0.dp, 0.dp, 0.dp, 60.dp),
         ) {
             pilot.value.let {
                 items(
                     items = it,
                     itemContent = {
-                        Holder(item = it,
+                        Holder(
+                            item = it,
                             mF1Driver = viewModel.getF1Driver(),
-                            mF1Cons = viewModel.getF1Team())
-                    })
+                            mF1Cons = viewModel.getF1Team()
+                        )
+                    }
+                )
             }
         }
-
     }
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun Holder(
-    item:DLastRaceResult,
+    item: DLastRaceResult,
     mF1Driver: F1Driver,
     mF1Cons: F1Team
 ) {
@@ -126,49 +123,55 @@ fun Holder(
                 val heightOffset = size.height * offset
                 return LinearGradientShader(
                     colors = color,
-                    from = Offset(widthOffset,heightOffset),
-                    to = Offset(widthOffset + size.width,heightOffset + size.height),
+                    from = Offset(widthOffset, heightOffset),
+                    to = Offset(widthOffset + size.width, heightOffset + size.height),
                     tileMode = TileMode.Mirror
                 )
             }
         }
     }
 
-    Card(modifier = Modifier
-        .fillMaxWidth()
-        .height(90.dp)
-        .background(Color.Transparent)
-        .padding(10.dp),
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(90.dp)
+            .background(Color.Transparent)
+            .padding(10.dp),
         elevation = CardDefaults.cardElevation(
             2.dp
         ),
         border = BorderStroke(1.dp, brush = brush)
     ) {
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .height(80.dp)
-            .background(Color.White),
-        horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically)
-        {
-            
-            Row(modifier = Modifier
-                .size(30.dp)
-                .offset(20.dp),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
+                .background(Color.White),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(text = item.position,
-                    color = Color.Black,
-                    fontSize = 18.sp)
-            }
-            
+        ) {
+
             Row(
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.Start,
-            modifier = Modifier
-                .size(60.dp)
-                .offset(20.dp, 5.dp)) {
+                modifier = Modifier
+                    .size(30.dp)
+                    .offset(20.dp),
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = item.position,
+                    color = Color.Black,
+                    fontSize = 18.sp
+                )
+            }
+
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.Start,
+                modifier = Modifier
+                    .size(60.dp)
+                    .offset(20.dp, 5.dp)
+            ) {
 
                 mF1Driver.getLink(item.pilotName)?.let {
                     DriverImageView(
@@ -180,99 +183,109 @@ fun Holder(
 
             Spacer(modifier = Modifier.width(20.dp))
 
-
-            Column(modifier = Modifier
-                .fillMaxHeight()
-                .width(2.dp),
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .width(2.dp),
                 horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.Top) {
+                verticalArrangement = Arrangement.Top
+            ) {
 
-                Row(modifier = Modifier
-                    .fillMaxWidth()
-                    .height(20.dp)
-                    .background(Color.Gray)) {
-
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(20.dp)
+                        .background(Color.Gray)
+                ) {
                 }
 
-                Row(modifier = Modifier
-                    .fillMaxWidth()
-                    .height(20.dp)
-                    .offset(0.dp, 20.dp)
-                    .background(Color.Gray)) {
-
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(20.dp)
+                        .offset(0.dp, 20.dp)
+                        .background(Color.Gray)
+                ) {
                 }
             }
-            
+
             Spacer(modifier = Modifier.width(20.dp))
-            
-            Text(modifier = Modifier
-                .wrapContentHeight()
-                .width(150.dp),
+
+            Text(
+                modifier = Modifier
+                    .wrapContentHeight()
+                    .width(150.dp),
                 text = "${item.pilotName} ${item.pilotSurname}",
                 maxLines = 1,
                 color = Color.Black,
-                fontSize = 18.sp)
+                fontSize = 18.sp
+            )
 
             Spacer(modifier = Modifier.width(10.dp))
 
-            Text(modifier = Modifier
-                .wrapContentHeight()
-                .width(50.dp),
+            Text(
+                modifier = Modifier
+                    .wrapContentHeight()
+                    .width(50.dp),
                 text = "+${item.point}",
                 maxLines = 1,
                 color = Color.Black,
-                fontSize = 18.sp)
+                fontSize = 18.sp
+            )
         }
     }
 }
-
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun DriverImageView(
-    driverURL:String?,
-    constructorURL:String?
+    driverURL: String?,
+    constructorURL: String?
 ) {
-    Row(modifier = Modifier
-        .width(60.dp)
-        .height(60.dp)
-        .background(Color.White)
+    Row(
+        modifier = Modifier
+            .width(60.dp)
+            .height(60.dp)
+            .background(Color.White)
     ) {
-        Row(modifier = Modifier
-            .size(45.dp)
-            .padding(1.dp)
-            .clip(CircleShape)
-            .border(0.3.dp, Color.Black, CircleShape),
+        Row(
+            modifier = Modifier
+                .size(45.dp)
+                .padding(1.dp)
+                .clip(CircleShape)
+                .border(0.3.dp, Color.Black, CircleShape),
             horizontalArrangement = Arrangement.Start,
         ) {
-            GlideImage(model = driverURL,
-                contentDescription = null)
+            GlideImage(
+                model = driverURL,
+                contentDescription = null
+            )
         }
 
-        Row(modifier = Modifier
-            .offset((-20).dp, 35.dp)
-            .size(30.dp)
-            .background(Color.Transparent)
-            .clip(CircleShape)) {
-            GlideImage(model = constructorURL,
+        Row(
+            modifier = Modifier
+                .offset((-20).dp, 35.dp)
+                .size(30.dp)
+                .background(Color.Transparent)
+                .clip(CircleShape)
+        ) {
+            GlideImage(
+                model = constructorURL,
                 modifier = Modifier
                     .size(30.dp)
                     .clip(CircleShape),
                 alignment = Alignment.TopStart,
-                contentDescription = null)
+                contentDescription = null
+            )
         }
     }
 }
-
 
 @Composable
 private fun textColor(): Color {
     if (isSystemInDarkTheme()) {
         return DarkColorPalette.textColor
-    }
-    else {
+    } else {
         return LightColorPalette.textColor
     }
 }
-
-

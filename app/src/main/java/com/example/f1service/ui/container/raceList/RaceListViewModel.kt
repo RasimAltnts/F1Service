@@ -22,7 +22,7 @@ class RaceListViewModel @Inject constructor(
     var raceListMapper: RaceListMapper,
 ) : ViewModel() {
 
-    val calendar:MutableLiveData<DF1CurrentSession> by lazy {
+    val calendar: MutableLiveData<DF1CurrentSession> by lazy {
         MutableLiveData<DF1CurrentSession> ()
     }
 
@@ -42,7 +42,6 @@ class RaceListViewModel @Inject constructor(
             )
         }
     }
-
 
     fun getF1CircuitCountry(): F1CircuitCountry {
         return f1Circ

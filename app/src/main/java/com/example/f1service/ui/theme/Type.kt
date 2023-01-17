@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.f1service.R
 
-//Custom Font Family
+// Custom Font Family
 val customFontFamily = FontFamily(
     Font(R.font.kumbhsans_light, weight = FontWeight.Light),
     Font(R.font.kumbhsans_regular, weight = FontWeight.Normal)

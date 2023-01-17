@@ -23,7 +23,9 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @GET("{session}/{round}/results.json")
     fun getRaceResults(
-        @Path("session")session:String,@Path("round")round:String): Call<JsonObject>
+        @Path("session")session: String,
+        @Path("round")round: String
+    ): Call<JsonObject>
 
     @Headers("Content-Type: application/json")
     @GET("current/constructorStandings.json")
@@ -32,5 +34,4 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @GET("current/driverStandings.json")
     fun getDriverResults(): Call<JsonObject>
-
 }

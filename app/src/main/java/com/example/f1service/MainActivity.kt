@@ -22,7 +22,6 @@ import com.example.f1service.ui.nextRace.NextRaceViewModel
 import com.example.f1service.ui.theme.F1ServiceComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -39,41 +38,48 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Column(modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth()
-                        .padding(5.dp)) {
-
-                        Box(modifier = Modifier
+                    Column(
+                        modifier = Modifier
+                            .fillMaxHeight()
                             .fillMaxWidth()
-                            .fillMaxHeight(0.25f)
-                            .background(
-                                Color.Transparent
-                            )
-                            .shadow(
-                                5.dp,
-                                shape = RoundedCornerShape(2.dp),
-                                clip = true,
-                                ambientColor = Color.Black,
-                                spotColor = Color.Black
-                            )
+                            .padding(5.dp)
+                    ) {
+
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight(0.25f)
+                                .background(
+                                    Color.Transparent
+                                )
+                                .shadow(
+                                    5.dp,
+                                    shape = RoundedCornerShape(2.dp),
+                                    clip = true,
+                                    ambientColor = Color.Black,
+                                    spotColor = Color.Black
+                                )
                         ) {
                             NextRaceUI(
-                                viewModels =viewModel,
+                                viewModels = viewModel,
                                 counter = NextRaceCounter(),
-                                lifecycle = this@MainActivity )
+                                lifecycle = this@MainActivity
+                            )
                         }
 
-                        Spacer(modifier = Modifier
-                            .fillMaxWidth()
-                            .height(10.dp))
+                        Spacer(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(10.dp)
+                        )
 
-                        Box(modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight()
-                            .background(
-                                Color.Transparent
-                            )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .background(
+                                    Color.Transparent
+                                )
                         ) {
                             Container()
                         }

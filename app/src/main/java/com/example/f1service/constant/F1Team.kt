@@ -1,6 +1,5 @@
 package com.example.f1service.constant
 
-import com.example.f1service.di.FirebaseService
 import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
 
@@ -8,7 +7,7 @@ class F1Team @Inject constructor(
     service: FirebaseFirestore
 ) {
 
-    private val teamImageURL: HashMap<String,String> = HashMap()
+    private val teamImageURL: HashMap<String, String> = HashMap()
 
     init {
         service.collection("TeamImageURL")
@@ -19,7 +18,7 @@ class F1Team @Inject constructor(
                     val iterator = data.iterator()
                     while (iterator.hasNext()) {
                         val value = iterator.next()
-                        teamImageURL.put(value.key,value.value.toString())
+                        teamImageURL.put(value.key, value.value.toString())
                     }
                 }
             }

@@ -7,11 +7,10 @@ import com.example.f1service.model.model.F1LastRace.Result
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 
-
 class LastRaceMapper {
     private var gson = Gson()
 
-    fun encodeLastRaceResponse(jsonObject: JsonObject):DF1LastRaceModel {
+    fun encodeLastRaceResponse(jsonObject: JsonObject): DF1LastRaceModel {
 
         val result = DF1LastRaceModel()
         val mDF1LastRaceResults = gson.fromJson(jsonObject, LastRaceResults::class.java)
@@ -33,7 +32,7 @@ class LastRaceMapper {
             val value = iterator.next()
             val res = DLastRaceResult(
                 position = value.position,
-                point =  value.points,
+                point = value.points,
                 pilotName = value.Driver.givenName,
                 pilotSurname = value.Driver.familyName,
                 constructorName = value.Constructor.name,

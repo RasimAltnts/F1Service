@@ -36,11 +36,10 @@ import com.example.f1service.ui.theme.LightColorPalette
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
-fun ConstructorUI(viewModel:ConstructorViewModel = hiltViewModel()) {
+fun ConstructorUI(viewModel: ConstructorViewModel = hiltViewModel()) {
 
     val list = remember { (mutableStateOf(DF1ConstructorModel())) }
     val result = remember { mutableStateOf(ArrayList<F1ConstructorModel> ()) }
-
 
     val data by viewModel.results.observeAsState()
     data?.let {
@@ -50,20 +49,22 @@ fun ConstructorUI(viewModel:ConstructorViewModel = hiltViewModel()) {
 
     viewModel.sendRequest()
 
-    Column(modifier = Modifier
-        .fillMaxSize(1f)
-        .background(Color.Transparent),
+    Column(
+        modifier = Modifier
+            .fillMaxSize(1f)
+            .background(Color.Transparent),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally) {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
         Text(
             text = "${list.value.series} Session Constructor Results",
             color = textColor(),
-            modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
+            modifier = Modifier.padding(0.dp, 10.dp, 0.dp, 0.dp)
         )
 
         LazyColumn(
-            contentPadding = PaddingValues(0.dp,0.dp,0.dp,60.dp),
+            contentPadding = PaddingValues(0.dp, 0.dp, 0.dp, 60.dp),
         ) {
             result.value.let {
                 items(
@@ -77,7 +78,6 @@ fun ConstructorUI(viewModel:ConstructorViewModel = hiltViewModel()) {
                 )
             }
         }
-
     }
 }
 
@@ -88,21 +88,25 @@ fun Holder(
     mF1Team: F1Team,
 ) {
 
-    Card(modifier = Modifier
-        .fillMaxWidth()
-        .height(90.dp)
-        .background(Color.Transparent)
-        .padding(10.dp),
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(90.dp)
+            .background(Color.Transparent)
+            .padding(10.dp),
         elevation = CardDefaults.cardElevation(
             2.dp
         ),
-        border = BorderStroke(0.3.dp, brush = Brush.linearGradient(
-            colors = listOf(
-                Color.White,
-                Color.Black,
-            ),
-            tileMode = TileMode.Repeated
-        ))
+        border = BorderStroke(
+            0.3.dp,
+            brush = Brush.linearGradient(
+                colors = listOf(
+                    Color.White,
+                    Color.Black,
+                ),
+                tileMode = TileMode.Repeated
+            )
+        )
     ) {
         CardViewUI(item = item, f1Team = mF1Team)
     }
@@ -113,17 +117,21 @@ fun CardViewUI(
     item: F1ConstructorModel,
     f1Team: F1Team,
 ) {
-    Row(modifier = Modifier
-        .fillMaxHeight()
-        .wrapContentWidth()
-        .background(Color.White)
-        .padding(10.dp, 0.dp),
+    Row(
+        modifier = Modifier
+            .fillMaxHeight()
+            .wrapContentWidth()
+            .background(Color.White)
+            .padding(10.dp, 0.dp),
         horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically) {
+        verticalAlignment = Alignment.CenterVertically
+    ) {
 
-        Text(text = item.position.toString(),
+        Text(
+            text = item.position.toString(),
             color = Color.Black,
-            fontSize = 18.sp)
+            fontSize = 18.sp
+        )
 
         Row(
             modifier = Modifier
@@ -139,88 +147,102 @@ fun CardViewUI(
 
         Spacer(modifier = Modifier.width(20.dp))
 
-        Column(modifier = Modifier
-            .fillMaxHeight()
-            .width(2.dp)
-            .background(Color.Transparent),
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(2.dp)
+                .background(Color.Transparent),
             horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Top ) {
+            verticalArrangement = Arrangement.Top
+        ) {
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(25.dp)
-                .background(Color.Gray)) {
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(25.dp)
+                    .background(Color.Gray)
+            ) {
             }
 
-            Spacer(modifier = Modifier
-                .fillMaxWidth()
-                .height(20.dp)
-                .background(Color.Transparent))
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .background(Color.Transparent)
+            )
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(25.dp)
-                .background(Color.Gray)) {
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(25.dp)
+                    .background(Color.Gray)
+            ) {
             }
-
         }
 
-        Row(modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth(0.6f)
-            .background(Color.Transparent)) {
+        Row(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(0.6f)
+                .background(Color.Transparent)
+        ) {
             Spacer(modifier = Modifier.width(0.dp))
 
-            Text(text = item.name.toString(),
+            Text(
+                text = item.name.toString(),
                 color = Color.Black,
                 fontSize = 18.sp,
                 maxLines = 1,
                 modifier = Modifier
                     .padding(20.dp, 20.dp, 0.dp, 0.dp)
-                    .background(Color.Transparent))
-
+                    .background(Color.Transparent)
+            )
         }
 
-        Row(modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth(1f)
-            .background(Color.Transparent)) {
+        Row(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(1f)
+                .background(Color.Transparent)
+        ) {
             Spacer(modifier = Modifier.width(0.dp))
 
-            Text(text = "${item.points.toString()} P",
+            Text(
+                text = "${item.points} P",
                 color = Color.Black,
                 fontSize = 18.sp,
                 maxLines = 1,
                 modifier = Modifier
                     .padding(20.dp, 20.dp, 0.dp, 0.dp)
-                    .background(Color.Transparent))
-
+                    .background(Color.Transparent)
+            )
         }
     }
-
 }
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun ConstructorImageView(
-    url:String?
+    url: String?
 ) {
-    Row(modifier = Modifier
-        .width(60.dp)
-        .height(60.dp)
-        .background(Color.Transparent)
+    Row(
+        modifier = Modifier
+            .width(60.dp)
+            .height(60.dp)
+            .background(Color.Transparent)
     ) {
-        Row(modifier = Modifier
-            .size(45.dp)
-            .padding(1.dp)
-            .clip(CircleShape),
+        Row(
+            modifier = Modifier
+                .size(45.dp)
+                .padding(1.dp)
+                .clip(CircleShape),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            GlideImage(model = url,
-                contentDescription = null)
+            GlideImage(
+                model = url,
+                contentDescription = null
+            )
         }
     }
 }
@@ -229,8 +251,7 @@ private fun ConstructorImageView(
 private fun textColor(): Color {
     if (isSystemInDarkTheme()) {
         return DarkColorPalette.textColor
-    }
-    else {
+    } else {
         return LightColorPalette.textColor
     }
 }

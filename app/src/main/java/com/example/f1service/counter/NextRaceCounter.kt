@@ -13,16 +13,15 @@ class NextRaceCounter {
 
     private var stopTimer = false
 
-    private var listener: INextRaceCounter ?= null
+    private var listener: INextRaceCounter ? = null
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun startTimer(date:Date){
+    fun startTimer(date: Date) {
         GlobalScope.launch(Dispatchers.Default) {
             while (true) {
                 if (stopTimer) {
                     break
-                }
-                else {
+                } else {
                     getTime(date)
                 }
                 delay(1000L)
@@ -30,8 +29,7 @@ class NextRaceCounter {
         }
     }
 
-
-    suspend fun getTime(date:Date) {
+    suspend fun getTime(date: Date) {
         val time: Calendar = Calendar.getInstance()
         val timeMilliseconds = time.time
         val dateMilliseconds = date.time
@@ -45,11 +43,10 @@ class NextRaceCounter {
         val remainderMinutes = remainderHours % minutesMilliseconds
         var seconds = remainderMinutes / secondsMilliseconds
 
-
         if (days <= 0) days = 0
         if (hours <= 0) hours = 0
         if (minutes <= 0) minutes = 0
-        if (seconds <= 0)  seconds = 0
+        if (seconds <= 0) seconds = 0
 
         val counter = DCounter(
             days.toString(),
@@ -63,7 +60,7 @@ class NextRaceCounter {
         }
     }
 
-    fun stopTimer(){
+    fun stopTimer() {
         stopTimer = true
     }
 
@@ -71,9 +68,9 @@ class NextRaceCounter {
         this.listener = listener
     }
 
-    fun checkDate(date: Date):Boolean {
+    fun checkDate(date: Date): Boolean {
         val currentTime = Calendar.getInstance().time
-        var result:Boolean = false
+        var result: Boolean = false
         result = currentTime.time > date.time
         return result
     }
