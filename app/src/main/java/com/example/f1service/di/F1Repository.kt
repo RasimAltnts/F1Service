@@ -34,6 +34,8 @@ object F1Repository {
     @Provides
     @Singleton
     fun country(): F1CircuitCountry{
-        return F1CircuitCountry()
+        return F1CircuitCountry(
+            FirebaseService.firebaseService()
+        )
     }
 }
