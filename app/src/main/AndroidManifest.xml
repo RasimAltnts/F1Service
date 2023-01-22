@@ -21,7 +21,6 @@
         <activity
             android:name="com.example.f1service.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.F1ServiceCompose">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
