@@ -57,6 +57,7 @@ fun BottomNav(navController:NavController) {
                         modifier = Modifier
                             .size(32.dp))},
                 selected = currentRoute == item.route,
+                selectedContentColor = iconColor(),
                 onClick = {
                     navController.navigate(item.route) {
                         popUpTo(item.route)
@@ -97,8 +98,25 @@ fun bottomNavigationColor(): Color {
     }
     else {
         when(isSystemInDarkTheme()) {
-            true -> return LightColorPalette.nextRaceGradientEnd
-            false -> return DarkColorPalette.nextRaceGradientEnd
+            true -> return DarkColorPalette.SecondColor
+            false -> return LightColorPalette.SecondColor
+        }
+    }
+}
+
+
+@Composable
+fun iconColor(): Color {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        when (isSystemInDarkTheme()) {
+            true -> return dynamicDarkColorScheme(LocalContext.current).onPrimary
+            false -> return dynamicLightColorScheme(LocalContext.current).onPrimary
+        }
+    }
+    else {
+        when(isSystemInDarkTheme()) {
+            true -> return DarkColorPalette.SecondColor
+            false -> return LightColorPalette.SecondColor
         }
     }
 }

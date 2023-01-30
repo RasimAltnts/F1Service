@@ -1,13 +1,12 @@
 package com.example.f1service.ui.nextRace
 
 import android.os.Build
-import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -15,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -80,17 +78,7 @@ fun NextRaceUI(
         .fillMaxWidth()
         .fillMaxHeight()
         .clip(RoundedCornerShape(5.dp)),
-        shape = RoundedCornerShape(5.dp),
-        elevation = CardDefaults.cardElevation(
-            5.dp
-        ),
-        border = BorderStroke(0.3.dp, brush = Brush.linearGradient(
-            colors = listOf(
-                Color.White,
-                Color.Black,
-            ),
-            tileMode = TileMode.Mirror
-        ))
+        shape = RoundedCornerShape(5.dp)
     ) {
         Column(verticalArrangement = Arrangement.Top
             ,modifier = Modifier
@@ -158,7 +146,7 @@ fun NextRaceUI(
                     Column(modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
-                        .padding(10.dp, 0.dp, 5.dp, 0.dp)
+                        .padding(10.dp, 10.dp, 0.dp, 0.dp)
                         .background(Color.Transparent)) {
 
                         Text(text = circuitName.value, maxLines = 1, color = textColor())
@@ -205,8 +193,7 @@ private fun NextRaceTitle(title: String) {
         Text(text = title,
             fontFamily = FontFamily.Serif,
             fontSize = 10.sp,
-            color = textColor()
-        )
+            color = textColor())
     }
 }
 
@@ -216,18 +203,6 @@ fun encodeRaceTime(model:DNextRaceModel): Date? {
         date = ZonedDateTime.now().time(model.nextRaceDate!!,model.nextRaceTime!!)
     }
     return date
-}
-
-
-
-@Composable
-private fun textColor(): Color {
-    if (isSystemInDarkTheme()) {
-        return DarkColorPalette.textColor
-    }
-    else {
-        return LightColorPalette.textColor
-    }
 }
 
 @Composable
@@ -241,8 +216,8 @@ fun nextRaceUIBgStart(): Color {
     }
     else {
         when(isSystemInDarkTheme()) {
-            true -> return DarkColorPalette.nextRaceGradientStart
-            false -> return LightColorPalette.nextRaceGradientStart
+            true -> return DarkColorPalette.DarkPrimaryColor
+            false -> return LightColorPalette.LightPrimaryColor
         }
     }
 }
@@ -252,6 +227,15 @@ fun nextRaceUIBgEnd(): Color {
     when(isSystemInDarkTheme()) {
         true -> return DarkColorPalette.nextRaceGradientEnd
         false -> return LightColorPalette.nextRaceGradientEnd
+    }
+}
+
+
+@Composable
+fun textColor(): Color {
+    when(isSystemInDarkTheme()) {
+        true -> return DarkColorPalette.primaryText
+        false -> return LightColorPalette.primaryText
     }
 }
 

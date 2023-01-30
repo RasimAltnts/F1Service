@@ -34,6 +34,7 @@ import com.example.f1service.constant.F1Driver
 import com.example.f1service.constant.F1Team
 import com.example.f1service.model.DF1DriversModels
 import com.example.f1service.model.F1DriverModels
+import com.example.f1service.ui.container.lastRaceResults.dividerColor
 import com.example.f1service.ui.nextRace.nextRaceUIBgEnd
 import com.example.f1service.ui.nextRace.nextRaceUIBgStart
 import com.example.f1service.ui.theme.DarkColorPalette
@@ -65,7 +66,6 @@ fun DriverUI(viewModel: DriverViewModel = hiltViewModel()) {
     {
         Text(
             text = "${list.value.session} Session ${list.value.round} Round Driver Standlist",
-            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
         )
         LazyColumn(
@@ -158,7 +158,7 @@ fun Holder(
                 horizontalArrangement = Arrangement.Start,
                 modifier = Modifier
                     .size(60.dp)
-                    .offset(20.dp, 5.dp)) {
+                    .offset(30.dp, 5.dp)) {
 
                 mF1Driver.getLink(item.pilotName)?.let {
                     DriverImageView(
@@ -180,15 +180,15 @@ fun Holder(
                 Row(modifier = Modifier
                     .fillMaxWidth()
                     .height(20.dp)
-                    .background(Color.Gray)) {
+                    .background(dividerColor())) {
 
                 }
 
                 Row(modifier = Modifier
                     .fillMaxWidth()
                     .height(20.dp)
-                    .offset(0.dp, 20.dp)
-                    .background(Color.Gray)) {
+                    .offset(0.dp, 30.dp)
+                    .background(dividerColor())) {
 
                 }
             }
@@ -249,15 +249,5 @@ private fun DriverImageView(
                 alignment = Alignment.TopStart,
                 contentDescription = null)
         }
-    }
-}
-
-@Composable
-private fun textColor(): Color {
-    if (isSystemInDarkTheme()) {
-        return DarkColorPalette.textColor
-    }
-    else {
-        return LightColorPalette.textColor
     }
 }

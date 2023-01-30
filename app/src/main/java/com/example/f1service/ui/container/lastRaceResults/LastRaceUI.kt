@@ -1,6 +1,7 @@
 package com.example.f1service.ui.container.lastRaceResults
 
 import android.annotation.SuppressLint
+import android.os.Build
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -28,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.f1service.constant.F1Team
 import com.example.f1service.constant.F1Driver
@@ -66,14 +68,12 @@ fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
     {
         Text(
             text = "${list.value.session} Session ${list.value.round} Round",
-            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp),
             maxLines = 1
         )
 
         Text(
             text = "${list.value.circuitName} Result",
-            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp),
             maxLines = 1
         )
@@ -190,15 +190,15 @@ fun Holder(
                 Row(modifier = Modifier
                     .fillMaxWidth()
                     .height(20.dp)
-                    .background(Color.Gray)) {
+                    .background(dividerColor())) {
 
                 }
 
                 Row(modifier = Modifier
                     .fillMaxWidth()
                     .height(20.dp)
-                    .offset(0.dp, 20.dp)
-                    .background(Color.Gray)) {
+                    .offset(0.dp, 30.dp)
+                    .background(dividerColor())) {
 
                 }
             }
@@ -264,15 +264,11 @@ private fun DriverImageView(
     }
 }
 
-
 @Composable
-private fun textColor(): Color {
-    if (isSystemInDarkTheme()) {
-        return DarkColorPalette.textColor
-    }
-    else {
-        return LightColorPalette.textColor
+fun dividerColor(): Color {
+    when(isSystemInDarkTheme()) {
+        true -> return DarkColorPalette.dividerColor
+        false -> return LightColorPalette.dividerColor
     }
 }
-
 

@@ -31,6 +31,7 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.example.f1service.constant.F1Team
 import com.example.f1service.model.DF1ConstructorModel
 import com.example.f1service.model.F1ConstructorModel
+import com.example.f1service.ui.container.lastRaceResults.dividerColor
 import com.example.f1service.ui.theme.DarkColorPalette
 import com.example.f1service.ui.theme.LightColorPalette
 
@@ -58,7 +59,6 @@ fun ConstructorUI(viewModel:ConstructorViewModel = hiltViewModel()) {
 
         Text(
             text = "${list.value.series} Session Constructor Results",
-            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
         )
 
@@ -149,7 +149,7 @@ fun CardViewUI(
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .height(25.dp)
-                .background(Color.Gray)) {
+                .background(dividerColor())) {
 
             }
 
@@ -161,7 +161,7 @@ fun CardViewUI(
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .height(25.dp)
-                .background(Color.Gray)) {
+                .background(dividerColor())) {
 
             }
 
@@ -222,15 +222,5 @@ private fun ConstructorImageView(
             GlideImage(model = url,
                 contentDescription = null)
         }
-    }
-}
-
-@Composable
-private fun textColor(): Color {
-    if (isSystemInDarkTheme()) {
-        return DarkColorPalette.textColor
-    }
-    else {
-        return LightColorPalette.textColor
     }
 }
