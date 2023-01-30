@@ -3,6 +3,7 @@ package com.example.f1service.ui.container
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -66,18 +67,12 @@ fun Container() {
         .fillMaxWidth()
         .fillMaxHeight()
         .clip(RoundedCornerShape(15.dp))
-        .border(BorderStroke(1.dp,brush=brush), RoundedCornerShape(15.dp))) {
+        .border(BorderStroke(1.dp,brush=brush),
+            RoundedCornerShape(15.dp))) {
 
         Box(modifier = Modifier
             .fillMaxHeight(1f)
-            .fillMaxWidth()
-            .shadow(
-                2.dp,
-                shape = RoundedCornerShape(1.dp),
-                clip = false,
-                ambientColor = Color.Black,
-                spotColor = Color.Black
-            )) {
+            .fillMaxWidth()) {
 
             Scaffold(
                 modifier = Modifier.fillMaxHeight(1f),

@@ -13,25 +13,45 @@ val Pink40 = Color(0xFF7D5260)
 class LightColorPalette private constructor() {
     companion object {
 
-        val nextRaceGradientStart = Color(0xFFFFA800)
         val nextRaceGradientEnd = Color(0xCCFFFFFF)
 
         val background = Color(0xCCFFFFFF)
-        val iconColor = Color(0xCC000000)
 
-        val textColor = Color(0xCC000000)
+        //Color Palette For Light Theme of Under Android 12
+        val PrimaryColor = Color(0xFFFFC107)
+        val DarkPrimaryColor = Color(0xFFFFA000)
+        val LightPrimaryColor = Color(0xFFFFA000)
+        val SecondColor = Color(0xff212121)
+        val accentColor = Color(0xFFFFEB3B)
+
+        val primaryText = Color(0xFF212121)
+        val secondaryText = Color(0xFF757575)
+
+        val dividerColor = Color(0xFFBDBDBD)
+
     }
 }
 
 class DarkColorPalette private constructor() {
     companion object {
 
-        val nextRaceGradientStart = Color(0xFFFFA800)
         val nextRaceGradientEnd = Color(0xA6181818)
 
         val background = Color(0xCCFFFFFF)
-        val iconColor = Color(0xCCFFFFFF)
 
-        val textColor = Color(0xCCFFFFFF)
+        //Color Palette For Dark Theme of Under Android 12
+
+        val PrimaryColor = Color(0xFFFFC107)
+        val DarkPrimaryColor = Color(0xFFFFA000)
+        val LightPrimaryColor = Color(0xFFFFA000)
+        val SecondColor = Color(0xff212121)
+        val accentColor = Color(0xFFFFEB3B)
+
+        val primaryText = Color(0xFF212121)
+        val secondaryText = Color(0xFF757575)
+
+        val dividerColor = Color(0xFFBDBDBD)
+
+
     }
 }

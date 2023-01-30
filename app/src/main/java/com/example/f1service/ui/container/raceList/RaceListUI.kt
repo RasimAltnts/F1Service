@@ -28,6 +28,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.f1service.constant.F1CircuitCountry
 import com.example.f1service.model.F1CurrentSession
+import com.example.f1service.ui.container.lastRaceResults.dividerColor
 import com.example.f1service.ui.theme.DarkColorPalette
 import com.example.f1service.ui.theme.LightColorPalette
 
@@ -55,7 +56,6 @@ fun RaceListUI(viewModel: RaceListViewModel = hiltViewModel()) {
     {
         Text(
             text = "${session.value} Session Race Calendar",
-            color = textColor(),
             modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp)
         )
 
@@ -165,7 +165,7 @@ private fun NotExpandedCardUI(
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .height(20.dp)
-                .background(Color.Gray)) {
+                .background(dividerColor())) {
 
             }
 
@@ -173,7 +173,7 @@ private fun NotExpandedCardUI(
                 .fillMaxWidth()
                 .height(20.dp)
                 .offset(0.dp, 30.dp)
-                .background(Color.Gray)) {
+                .background(dividerColor())) {
 
             }
         }
@@ -259,7 +259,7 @@ private fun ExpandedCardViewUI(
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .height(40.dp)
-                .background(Color.Gray)) {
+                .background(dividerColor())) {
 
             }
 
@@ -271,7 +271,7 @@ private fun ExpandedCardViewUI(
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .height(40.dp)
-                .background(Color.Gray)) {
+                .background(dividerColor())) {
 
             }
 
@@ -412,16 +412,5 @@ private fun CountryImageView(
         }
     }
 }
-
-@Composable
-private fun textColor(): Color {
-    if (isSystemInDarkTheme()) {
-        return DarkColorPalette.textColor
-    }
-    else {
-        return LightColorPalette.textColor
-    }
-}
-
 
 
