@@ -167,6 +167,7 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -224,6 +225,7 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -278,9 +280,9 @@
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="com.example.f1service.RaceListTestExample" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="EXTRA_OPTIONS" value="" />
-      <option name="INCLUDE_GRADLE_EXTRA_OPTIONS" value="true" />
       <option name="RETENTION_ENABLED" value="No" />
       <option name="RETENTION_MAX_SNAPSHOTS" value="2" />
       <option name="RETENTION_COMPRESS_SNAPSHOTS" value="false" />
@@ -331,9 +333,9 @@
       <option name="METHOD_NAME" value="raceListTest" />
       <option name="CLASS_NAME" value="com.example.f1service.RaceListTestExample" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="EXTRA_OPTIONS" value="" />
-      <option name="INCLUDE_GRADLE_EXTRA_OPTIONS" value="true" />
       <option name="RETENTION_ENABLED" value="No" />
       <option name="RETENTION_MAX_SNAPSHOTS" value="2" />
       <option name="RETENTION_COMPRESS_SNAPSHOTS" value="false" />
@@ -387,6 +389,7 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.example.f1service.ui.nextRace.NextRaceUIKt.preNextRaceUI" />
       <option name="MODE" value="specific_activity" />
@@ -621,7 +624,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added NextRace,LastRace and RaceList" />
