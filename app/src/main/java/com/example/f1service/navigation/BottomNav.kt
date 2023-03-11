@@ -115,8 +115,8 @@ fun iconColor(): Color {
     }
     else {
         when(isSystemInDarkTheme()) {
-            true -> return DarkColorPalette.SecondColor
-            false -> return LightColorPalette.SecondColor
+            true -> return DarkColorPalette.accentColor
+            false -> return LightColorPalette.accentColor
         }
     }
 }
