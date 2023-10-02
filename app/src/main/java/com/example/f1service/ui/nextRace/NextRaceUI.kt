@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -21,8 +20,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.LifecycleOwner
-import com.example.f1service.counter.DCounter
-import com.example.f1service.counter.INextRaceCounter
 import com.example.f1service.counter.NextRaceCounter
 import com.example.f1service.extension.time
 import com.example.f1service.model.model.DNextRaceModel
@@ -49,15 +46,6 @@ fun NextRaceUI(
     val nextRaceCountry = remember { mutableStateOf("") }
     val nextRaceDate = remember { mutableStateOf("") }
 
-    val iNextRaceCounter = object : INextRaceCounter {
-        override fun counter(counter: DCounter) {
-            day.value = counter.days
-            hours.value = counter.hours
-            minutes.value = counter.minutes
-            seconds.value = counter.seconds
-        }
-    }
-
     viewModels.nextRaceInfo.observe(lifecycle) {
         circuitName.value = it.nextRaceCircuitName.toString()
         nextRaceCity.value = it.nextRaceCity.toString()
@@ -65,9 +53,13 @@ fun NextRaceUI(
         nextRaceDate.value = it.nextRaceDate.toString()
 
         if (counter != null) {
-            counter.setListener(iNextRaceCounter)
             encodeRaceTime(it)?.let { date ->
-                counter.startTimer(date)
+                counter.startTimer(date) { counter ->
+                    day.value = counter.days
+                    hours.value = counter.hours
+                    minutes.value = counter.minutes
+                    seconds.value = counter.seconds
+                }
             }
         }
     }

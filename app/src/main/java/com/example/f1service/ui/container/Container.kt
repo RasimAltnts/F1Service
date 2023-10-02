@@ -21,8 +21,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
-import com.example.f1service.navigation.BottomNav
-import com.example.f1service.navigation.NavigationGraph
+import com.example.f1service.ui.navigation.BottomNav
+import com.example.f1service.ui.navigation.NavigationGraph
 import com.example.f1service.ui.nextRace.nextRaceUIBgEnd
 import com.example.f1service.ui.nextRace.nextRaceUIBgStart
 

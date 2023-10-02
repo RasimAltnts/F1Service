@@ -1,5 +1,6 @@
 package com.example.f1service.ui.container.lastRaceResults
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,11 +8,8 @@ import com.example.f1service.constant.F1Driver
 import com.example.f1service.constant.F1Team
 import com.example.f1service.mapper.LastRaceMapper
 import com.example.f1service.model.DF1LastRaceModel
-import com.example.f1service.model.F1Const.F1Constructor
 import com.example.f1service.service.ApiService
-import com.example.f1service.service.IRequestCallback
 import com.example.f1service.service.RestService
-import com.google.gson.JsonObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,19 +27,15 @@ class LastRaceViewModel @Inject constructor(
         MutableLiveData<DF1LastRaceModel> ()
     }
 
-    private val response = object : IRequestCallback {
-        override fun isSuccesfull(response: JsonObject?) {
-            response?.let {
-                resultList.value = mapper.encodeLastRaceResponse(it)
-            }
-        }
-    }
-
     fun sendRequest() {
         viewModelScope.launch {
             service.sendRequest(
-                response,
-                apiService.getLastRaceResults()
+                apiService.getLastRaceResults(), {
+                    resultList.value = mapper.encodeLastRaceResponse(it)
+                }, { errorCode, message ->
+                    Log.d("I/Error",
+                        "Constructor Request Error. Error Code is $errorCode. Message is $message")
+                }
             )
         }
     }

@@ -1,23 +1,16 @@
 package com.example.f1service.ui.container.driver
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.f1service.constant.F1Driver
 import com.example.f1service.constant.F1Team
-import com.example.f1service.di.FirebaseService
 import com.example.f1service.mapper.DriverMapper
 import com.example.f1service.model.DF1DriversModels
-import com.example.f1service.model.F1Const.F1Constructor
 import com.example.f1service.service.ApiService
-import com.example.f1service.service.IRequestCallback
 import com.example.f1service.service.RestService
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.gson.JsonObject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,19 +27,15 @@ class DriverViewModel @Inject constructor(
         MutableLiveData<DF1DriversModels> ()
     }
 
-    private val callback = object : IRequestCallback {
-        override fun isSuccesfull(response: JsonObject?) {
-            response?.let {
-                result.value = driverMapper.decodeResponse(it)
-            }
-        }
-    }
-
     fun sendRequest() {
         viewModelScope.launch {
             service.sendRequest(
-                callback,
-                apiService.getDriverResults()
+                apiService.getDriverResults(), {
+                    result.value = driverMapper.decodeResponse(it)
+                } , { errorCode, message ->
+                    Log.d("I/Error",
+                        "Constructor Request Error. Error Code is $errorCode. Message is $message")
+                }
             )
         }
     }
