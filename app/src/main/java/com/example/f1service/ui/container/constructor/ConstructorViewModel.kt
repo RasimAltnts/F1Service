@@ -1,16 +1,14 @@
 package com.example.f1service.ui.container.constructor
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.f1service.constant.F1Team
 import com.example.f1service.mapper.ConstructorMapper
 import com.example.f1service.model.DF1ConstructorModel
-import com.example.f1service.model.F1ConstructorModel
 import com.example.f1service.service.ApiService
-import com.example.f1service.service.IRequestCallback
 import com.example.f1service.service.RestService
-import com.google.gson.JsonObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,21 +26,20 @@ class ConstructorViewModel @Inject constructor(
         MutableLiveData<DF1ConstructorModel> ()
     }
 
-    private var callback = object : IRequestCallback{
-        override fun isSuccesfull(response: JsonObject?) {
-            response?.let {
-                results.value = mapper.decodeResponse(response)
-            }
-        }
-
-    }
-
     fun sendRequest() {
+
         viewModelScope.launch {
+
             service.sendRequest(
-                callback,
-                apiService.getConstructorResults()
-            )
+                apiService.getConstructorResults(),
+                { response ->
+                    results.value = mapper.decodeResponse(response)
+                },{ errorCode, message ->
+                   Log.d("I/Error",
+                       "Constructor Request Error. Error Code is $errorCode. Message is $message")
+                })
+
+
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.f1service.ui.container.raceList
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,9 +8,7 @@ import com.example.f1service.constant.F1CircuitCountry
 import com.example.f1service.mapper.RaceListMapper
 import com.example.f1service.model.DF1CurrentSession
 import com.example.f1service.service.ApiService
-import com.example.f1service.service.IRequestCallback
 import com.example.f1service.service.RestService
-import com.google.gson.JsonObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,19 +25,15 @@ class RaceListViewModel @Inject constructor(
         MutableLiveData<DF1CurrentSession> ()
     }
 
-    private var raceCallback = object : IRequestCallback {
-        override fun isSuccesfull(response: JsonObject?) {
-            response?.let {
-                calendar.value = raceListMapper.decodeResponse(jsonObject = it)
-            }
-        }
-    }
-
     fun sendRequest() {
         viewModelScope.launch {
             service.sendRequest(
-                raceCallback,
-                apiService.getRaceCalendar()
+                apiService.getRaceCalendar(), {
+                    calendar.value = raceListMapper.decodeResponse(jsonObject = it)
+                }, { errorCode, message ->
+                    Log.d("I/Error",
+                        "Constructor Request Error. Error Code is $errorCode. Message is $message")
+                }
             )
         }
     }
