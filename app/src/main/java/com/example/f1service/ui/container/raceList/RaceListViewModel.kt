@@ -37,9 +37,4 @@ class RaceListViewModel @Inject constructor(
             )
         }
     }
-
-
-    fun getF1CircuitCountry(): F1CircuitCountry {
-        return f1Circ
-    }
 }

@@ -39,12 +39,4 @@ class LastRaceViewModel @Inject constructor(
             )
         }
     }
-
-    fun getF1Driver():F1Driver {
-        return f1driver
-    }
-
-    fun getF1Team(): F1Team {
-        return f1Const
-    }
 }
