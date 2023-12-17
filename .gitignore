@@ -1,0 +1,71 @@
+# General macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+fseventsd
+Spotlight-V100
+TemporaryItems
+Trashes
+VolumeIcon.icns
+com.apple.timemachine.donotpresent
+
+# Build folders
+build/
+app/build/
+.gradle/wrapper/dists/
+
+# IDE-specific files
+/.idea/
+/out/
+.idea_modules/
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Generated files
+*.iml
+modules.xml
+.idea/misc.xml
+*.ipr
+
+# Logs
+.log
+
+# Temporary files
+.history
+.cache
+
+# Local configurations
+local.properties
+
+# Version control systems
+.git/
+.svn/
+
+# Miscellaneous
+Thumbs.db
+*.DS_Store
+
+# Ignore all IntelliJ IDEA project settings except workspace.xml and tasks.xml
+!/.idea/workspace.xml
+!/.idea/tasks.xml
+
+# Ignore all Android Studio module files except the ones from the app module
+!/*.iml
+
+# Ignore specific files/folders if needed (e.g., debug keys)
+# <filename or directory path>
+
+# Ignore generated Java sources if using Kotlin and Android Gradle plugin 7.0+
+!/build/tmp/kotlin-classes/debug/
+!/build/tmp/kotlin-classes/release/
+
+# Ignore checksum related files
+checksums.locks
+*-lock
+.checksum*
