@@ -1,9 +1,7 @@
 package com.example.f1service.ui.container.lastRaceResults
 
 import android.annotation.SuppressLint
-import android.os.Build
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -21,29 +19,20 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.f1service.model.DLastRaceResult
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.f1service.constant.F1Team
 import com.example.f1service.constant.F1Driver
 import com.example.f1service.model.DF1LastRaceModel
-import com.example.f1service.ui.nextRace.nextRaceUIBgEnd
-import com.example.f1service.ui.nextRace.nextRaceUIBgStart
 import com.example.f1service.ui.theme.DarkColorPalette
 import com.example.f1service.ui.theme.LightColorPalette
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 
 @SuppressLint("MutableCollectionMutableState")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
 
@@ -96,43 +85,13 @@ fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Holder(
     item:DLastRaceResult,
     mF1Driver: F1Driver,
     mF1Cons: F1Team
 ) {
-
-    val color = listOf(
-        nextRaceUIBgEnd(),
-        nextRaceUIBgStart()
-    )
-
-    val inlineTransaction = rememberInfiniteTransition()
-    val offset by inlineTransaction.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 2000, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        )
-    )
-
-    val brush = remember(offset) {
-        object : ShaderBrush() {
-            override fun createShader(size: Size): Shader {
-                val widthOffset = size.width * offset
-                val heightOffset = size.height * offset
-                return LinearGradientShader(
-                    colors = color,
-                    from = Offset(widthOffset,heightOffset),
-                    to = Offset(widthOffset + size.width,heightOffset + size.height),
-                    tileMode = TileMode.Mirror
-                )
-            }
-        }
-    }
 
     Card(modifier = Modifier
         .fillMaxWidth()
@@ -141,8 +100,7 @@ fun Holder(
         .padding(10.dp),
         elevation = CardDefaults.cardElevation(
             2.dp
-        ),
-        border = BorderStroke(1.dp, brush = brush)
+        )
     ) {
         Row(modifier = Modifier
             .fillMaxWidth()
