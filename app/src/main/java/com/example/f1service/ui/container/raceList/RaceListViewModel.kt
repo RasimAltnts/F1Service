@@ -17,7 +17,7 @@ import javax.inject.Inject
 class RaceListViewModel @Inject constructor(
     var service: RestService,
     var apiService: ApiService,
-    var f1Circ: F1CircuitCountry,
+    var f1CircuitCountry: F1CircuitCountry,
     var raceListMapper: RaceListMapper,
 ) : ViewModel() {
 
@@ -36,10 +36,5 @@ class RaceListViewModel @Inject constructor(
                 }
             )
         }
-    }
-
-
-    fun getF1CircuitCountry(): F1CircuitCountry {
-        return f1Circ
     }
 }

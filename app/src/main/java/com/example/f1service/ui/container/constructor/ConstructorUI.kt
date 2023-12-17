@@ -31,8 +31,6 @@ import com.example.f1service.constant.F1Team
 import com.example.f1service.model.DF1ConstructorModel
 import com.example.f1service.model.F1ConstructorModel
 import com.example.f1service.ui.container.lastRaceResults.dividerColor
-import com.example.f1service.ui.theme.DarkColorPalette
-import com.example.f1service.ui.theme.LightColorPalette
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
@@ -70,7 +68,7 @@ fun ConstructorUI(viewModel:ConstructorViewModel = hiltViewModel()) {
                     itemContent = {
                         Holder(
                             item = it,
-                            mF1Team = viewModel.f1Team()
+                            mF1Team = viewModel.f1Team
                         )
                     }
                 )

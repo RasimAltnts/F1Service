@@ -69,7 +69,7 @@ fun DriverUI(viewModel: DriverViewModel = hiltViewModel()) {
                     itemContent = {
                         Holder(item = it,
                             mF1Driver = viewModel.f1Driver,
-                            mF1Cons = viewModel.getConsImage())
+                            mF1Cons = viewModel.f1Team)
                     })
             }
         }

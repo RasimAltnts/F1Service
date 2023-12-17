@@ -75,8 +75,8 @@ fun LastRaceUI(viewModel: LastRaceViewModel = hiltViewModel()) {
                     items = it,
                     itemContent = {
                         Holder(item = it,
-                            mF1Driver = viewModel.getF1Driver(),
-                            mF1Cons = viewModel.getF1Team())
+                            mF1Driver = viewModel.f1driver,
+                            mF1Cons = viewModel.f1Const)
                     })
             }
         }

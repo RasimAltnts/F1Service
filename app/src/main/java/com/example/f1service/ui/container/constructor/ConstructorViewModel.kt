@@ -42,8 +42,4 @@ class ConstructorViewModel @Inject constructor(
 
         }
     }
-
-    fun f1Team(): F1Team {
-        return f1Team
-    }
 }

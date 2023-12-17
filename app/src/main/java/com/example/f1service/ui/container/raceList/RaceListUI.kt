@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -29,8 +28,6 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.example.f1service.constant.F1CircuitCountry
 import com.example.f1service.model.F1CurrentSession
 import com.example.f1service.ui.container.lastRaceResults.dividerColor
-import com.example.f1service.ui.theme.DarkColorPalette
-import com.example.f1service.ui.theme.LightColorPalette
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
@@ -68,7 +65,7 @@ fun RaceListUI(viewModel: RaceListViewModel = hiltViewModel()) {
                     itemContent = {
                         Holder(
                             item = it,
-                            mF1CircuitCountry = viewModel.getF1CircuitCountry()
+                            mF1CircuitCountry = viewModel.f1CircuitCountry
                         )
                     })
             }
@@ -351,41 +348,6 @@ private fun ExpandedCardViewUI(
                         fontSize = 12.sp)
                 }
             }
-        }
-    }
-}
-
-
-@Composable
-fun Divider() {
-    Row(modifier = Modifier
-        .fillMaxWidth(0.8f)
-        .height(5.dp)
-        .offset(20.dp, 5.dp),
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.Start) {
-
-        Box(modifier = Modifier
-            .size(5.dp)
-            .clip(CircleShape)
-            .background(Color.Gray)) {
-
-        }
-
-        Box(modifier = Modifier
-            .width(150.dp)
-            .height(1.dp)
-            .offset(0.dp, 2.dp)
-            .padding(0.dp, 0.dp, 0.dp, 0.dp)
-            .background(Color.Gray)) {
-
-        }
-
-        Box(modifier = Modifier
-            .size(5.dp)
-            .clip(CircleShape)
-            .background(Color.Gray)) {
-
         }
     }
 }
