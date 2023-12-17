@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -29,8 +28,6 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.example.f1service.constant.F1CircuitCountry
 import com.example.f1service.model.F1CurrentSession
 import com.example.f1service.ui.container.lastRaceResults.dividerColor
-import com.example.f1service.ui.theme.DarkColorPalette
-import com.example.f1service.ui.theme.LightColorPalette
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
@@ -68,7 +65,7 @@ fun RaceListUI(viewModel: RaceListViewModel = hiltViewModel()) {
                     itemContent = {
                         Holder(
                             item = it,
-                            mF1CircuitCountry = viewModel.getF1CircuitCountry()
+                            mF1CircuitCountry = viewModel.f1Circ
                         )
                     })
             }
@@ -78,8 +75,7 @@ fun RaceListUI(viewModel: RaceListViewModel = hiltViewModel()) {
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class,
-    ExperimentalGlideComposeApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Holder(
     item: F1CurrentSession,

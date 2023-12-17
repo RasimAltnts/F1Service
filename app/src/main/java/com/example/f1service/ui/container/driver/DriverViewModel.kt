@@ -39,14 +39,4 @@ class DriverViewModel @Inject constructor(
             )
         }
     }
-
-    fun getDriverImage():F1Driver {
-        return f1Driver
-    }
-
-
-
-    fun getConsImage(): F1Team {
-        return f1Team
-    }
 }
