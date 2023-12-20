@@ -1,18 +1,18 @@
 
 # F1Service
 
-# General
-
-![image_url](https://imgyukle.com/f/2023/01/22/J4d4Uj.png)
-
-Application Video: https://youtu.be/sZLJtfz3XXI
-
 ## Introduction
 
 This application show F1 Race Result, Race Calendar, Driver Standing and Constructor Standing.
 
-This application is using Ergast API Services
+This application is using Ergast API Services. 
 
+## Screenshots
+
+ <img src="https://raw.github.com/RasimAltnts/F1Service/main/screenshot/constructor_standing.jpg" width="20%" height="50%" />
+ <img src="https://raw.github.com/RasimAltnts/F1Service/main/screenshot/driver_standings.jpg" width="20%" height="50%" />
+ <img src="https://raw.github.com/RasimAltnts/F1Service/main/screenshot/homepage.jpg" width="20%" height="50%" />
+ <img src="https://raw.github.com/RasimAltnts/F1Service/main/screenshot/race_calendar.jpg" width="20%" height="50%" />
 
 ## Used Technologies
 
@@ -22,3 +22,5 @@ This application is using Ergast API Services
 - Retrofit
 - Dagger2 Hilt
 - Glide
+- Clean Architecture
+- Reactive Programming (Coroutine)
